@@ -14,8 +14,79 @@ const generateMap = () => {
   }
   //JUst a log out to check if all GUcci my dude
   console.log(segedT2);
-};
+  const objectMap = segedT2;
+  for (let i = 0; i < segedT.length; i++) {
+    for (let j = 0; j < segedT2[i].length; j++) {
+      //make sure to have a lot of space cause this console log is HUGE MAN
+      //if its empty , We fill the array position with an object of null keys
+      if (segedT[i][j] === " ") {
+        objectMap[i][j] = {
+          type: null,
+          icon: null,
+          direction: null,
+          color: null,
+        };
+      }
+      //same for the wall we fill 3 values , but it cannot move * Hopefully #prayers
+      if (segedT[i][j] === "w") {
+        objectMap[i][j] = {
+          type: "wall",
+          icon: "#",
+          direction: null,
+          color: "BROWN", // pc bro pc
+        };
+      }
 
+      if (segedT[i][j] === "X") {
+        objectMap[i][j] = {
+          type: "player",
+          icon: "X",
+          direction: "RIGHT", //I just defined A random direction , can be also down
+          color: "PINK", // pc bro pc
+        };
+      }
+
+      if (segedT[i][j] === "E") {
+        objectMap[i][j] = {
+          type: "enemy",
+          icon: "E",
+          direction: "LEFT", //I just defined A random direction , can be anything for enemy
+          //maybe we can define a search function if he sees wall do not hit wall
+          //HITTING WALL BAD
+          color: "RED", // pc bro pc
+        };
+      }
+
+      if (segedT[i][j] === "T") {
+        objectMap[i][j] = {
+          type: "target",
+          icon: "T",
+          direction: "LEFT", //I just defined A random direction , can be anything for enemy
+          //maybe we can define a search function if he sees wall do not hit wall
+          //HITTING WALL BAD
+          color: "GREY", // pc bro pc
+        };
+      }
+    }
+  }
+  console.log(objectMap);
+};
+/*
+Maybe I gonna put it in a function later
+const objectMap = [];
+for (let i = 0; i < segedT.length; i++) {
+  for (let j = 0; j < segeT1[i].length; j++) {
+    if (segedT[i][j] === " ") {
+      objectMap[i][j] = {
+        type: null,
+        icon: null,
+        direction: null,
+        color: null,
+      };
+    }
+  }
+}
+*/
 //made the export to start and connect with index.js
 module.exports = {
   generateMap,
