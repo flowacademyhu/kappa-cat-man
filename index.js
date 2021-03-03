@@ -37,16 +37,20 @@ printMap();
 }*/
 
 const changeDirection = (i, j) => {
+  const randomDirection = ["LEFT", "UP", "DOWN", "RIGHT"];
+  console.log(randomDirection[Math.floor(Math.random() * 4)]);
+
   if (map[i][j].type === "target" || map[i][j].type === "enemy") {
-    if (map[i][j + 1].icon !== "#") {
-      map[i][j].direction = "RIGHT";
-    } else if (map[i + 1][j].icon !== "#") {
-      map[i][j].direction = "DOWN";
+    map[i][j].direction = randomDirection[Math.floor(Math.random() * 4)];
+    if (map[i][j + 1].icon === "#") {
+      map[i][j].direction = randomDirection[Math.floor(Math.random() * 4)];
+    } else if (map[i + 1][j].icon === "#") {
+      map[i][j].direction = randomDirection[Math.floor(Math.random() * 4)];
+    } else if (map[i][j].icon === "#") {
+      map[i][j].direction = randomDirection[Math.floor(Math.random() * 4)];
+    } else if (map[i][j - 1].icon !== "#") {
+      map[i][j].direction = randomDirection[Math.floor(Math.random() * 4)];
     }
-  } else if (map[i][j].icon !== "#") {
-    map[i - 1][j].direction = "UP";
-  } else if (map[i][j - 1].icon !== "#") {
-    map[i - 1][j].direction = "LEFT";
   }
 };
 
@@ -54,8 +58,8 @@ let x = 1;
 const step2 = () => {
   let stringTomb = [];
   let string;
-  for (let i = 0; i < map.length - 1; i++) {
-    for (let j = 0; j < map[i].length - 1; j++) {
+  for (let i = 1; i < map.length - 1; i++) {
+    for (let j = 1; j < map[i].length - 1; j++) {
       //wallra és emtyre nem történik semmi
       string = i + "" + j;
       if (stringTomb.includes(string) === false) {
