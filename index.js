@@ -1,6 +1,7 @@
 //just inporting maps.js
 const maps2 = require('./maps.js');
 const step = require('./gameplay.js');
+const readlinesync = require('readline-sync');
 
 //Time to use the functions fam
 const map = maps2.generateMap();
@@ -13,10 +14,24 @@ const printMap = () => {
     console.log();
   }
 };
-
 printMap();
-step.stepDown(map);
-step.stepLeft(map);
-step.stepRight(map);
-step.stepUp(map);
-printMap();
+let button = readlinesync.keyIn();
+while (button !== 'q') {
+  button = readlinesync.keyIn();
+  if (button === 'd') {
+    step.stepRight(map);
+    printMap();
+  }
+  if (button === 'a') {
+    step.stepLeft(map);
+    printMap();
+  }
+  if (button === 'w') {
+    step.stepUp(map);
+    printMap();
+  }
+  if (button === 's') {
+    step.stepDown(map);
+    printMap();
+  }
+}
