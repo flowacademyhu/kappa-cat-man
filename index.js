@@ -15,25 +15,61 @@ const printMap = () => {
   }
 };
 printMap();
-//let button = readlinesync.keyIn();
+/*let button = readlinesync.keyIn(); */
+const addAssincronListener = () => {
+  const stdin = process.stdin;
+  stdin.setRawMode(true); // Ne várjon enterre
+  stdin.resume(); // Csak process.exit-el lehet kilépni
+  stdin.setEncoding("utf8"); // Karaktereket kapjunk vissza
+  stdin.on("data", (key) => {
+    // Callback függvény
+    console.log("You pressed: ", key);
+    if (key === "q") {
+      process.exit();
+    }
+    if (key === "a") {
+      for (let i = 0; i < map.length; i++) {
+        for (let j = 0; j < map[i].length; j++) {
+          if (map[i][j].type === "player") {
+            map[i][j].direction = "LEFT";
+          }
+        }
+      }
+    }
+    if (key === "s") {
+      for (let i = 0; i < map.length; i++) {
+        for (let j = 0; j < map[i].length; j++) {
+          if (map[i][j].type === "player") {
+            map[i][j].direction = "DOWN";
+          }
+        }
+      }
+    }
+    if (key === "d") {
+      for (let i = 0; i < map.length; i++) {
+        for (let j = 0; j < map[i].length; j++) {
+          if (map[i][j].type === "player") {
+            map[i][j].direction = "RIGHT";
+          }
+        }
+      }
+    }
+    if (key === "w") {
+      for (let i = 0; i < map.length; i++) {
+        for (let j = 0; j < map[i].length; j++) {
+          if (map[i][j].type === "player") {
+            map[i][j].direction = "UP";
+          }
+        }
+      }
+    }
+  });
+  printMap();
+};
+
 /*while (button !== "q") {
   button = readlinesync.keyIn();
-  if (button === "d") {
-    step.stepRight(map);
-    printMap();
-  }
-  if (button === "a") {
-    step.stepLeft(map);
-    printMap();
-  }
-  if (button === "w") {
-    step.stepUp(map);
-    printMap();
-  }
-  if (button === "s") {
-    step.stepDown(map);
-    printMap();
-  }
+  
 }*/
 
 const changeDirection = (i, j) => {
@@ -55,12 +91,16 @@ const changeDirection = (i, j) => {
 };
 
 let x = 1;
+addAssincronListener();
 const step2 = () => {
+  /* */
+
   let stringTomb = [];
   let string;
   for (let i = 1; i < map.length - 1; i++) {
     for (let j = 1; j < map[i].length - 1; j++) {
       //wallra és emtyre nem történik semmi
+
       string = i + "" + j;
       if (stringTomb.includes(string) === false) {
         if (
@@ -122,5 +162,4 @@ const step2 = () => {
   }
   printMap();
 };
-
 setInterval(step2, 1000);

@@ -1,3 +1,5 @@
+const randomDirection = ["LEFT", "UP", "DOWN", "RIGHT"];
+
 const fs = require("fs");
 //NOTE: HAPPY TO RENAME ANYTHING , MAPS AND MAPS.JS A BIT CONFUSING
 //Made the code a function , now we can call it in maps.js
@@ -41,7 +43,7 @@ const generateMap = () => {
         objectMap[i][j] = {
           type: "player",
           icon: "X",
-          direction: "RIGHT", //I just defined A random direction , can be also down
+          direction: randomDirection[Math.floor(Math.random() * 4)], //I just defined A random direction , can be also down
           color: "PINK", // pc bro pc
         };
       }
@@ -50,7 +52,7 @@ const generateMap = () => {
         objectMap[i][j] = {
           type: "enemy",
           icon: "E",
-          direction: "RIGHT", //I just defined A random direction , can be anything for enemy
+          direction: randomDirection[Math.floor(Math.random() * 4)], //I just defined A random direction , can be anything for enemy
           //maybe we can define a search function if he sees wall do not hit wall
           //HITTING WALL BAD
           color: "RED", // pc bro pc
@@ -61,7 +63,7 @@ const generateMap = () => {
         objectMap[i][j] = {
           type: "target",
           icon: "T",
-          direction: "RIGHT", //I just defined A random direction , can be anything for enemy
+          direction: randomDirection[Math.floor(Math.random() * 4)], //I just defined A random direction , can be anything for enemy
           //maybe we can define a search function if he sees wall do not hit wall
           //HITTING WALL BAD
           color: "GREY", // pc bro pc
