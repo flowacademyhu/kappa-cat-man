@@ -36,6 +36,20 @@ printMap();
   }
 }*/
 
+const changeDirection = (i, j) => {
+  if (map[i][j].type === "target" || map[i][j].type === "enemy") {
+    if (map[i][j + 1].icon !== "#") {
+      map[i][j].direction = "RIGHT";
+    } else if (map[i + 1][j].icon !== "#") {
+      map[i][j].direction = "DOWN";
+    }
+  } else if (map[i][j].icon !== "#") {
+    map[i - 1][j].direction = "UP";
+  } else if (map[i][j - 1].icon !== "#") {
+    map[i - 1][j].direction = "LEFT";
+  }
+};
+
 let x = 1;
 const step2 = () => {
   let stringTomb = [];
@@ -58,6 +72,8 @@ const step2 = () => {
               string = i + "" + (j + 1);
               stringTomb.push(string);
               console.log(string, stringTomb);
+            } else {
+              changeDirection(i, j);
             }
           }
           if (map[i][j].direction === "DOWN") {
@@ -68,6 +84,8 @@ const step2 = () => {
               string = i + 1 + "" + j;
               stringTomb.push(string);
               console.log(string, stringTomb);
+            } else {
+              changeDirection(i, j);
             }
           }
           if (map[i][j].direction === "LEFT") {
@@ -78,6 +96,8 @@ const step2 = () => {
               string = i + "" + (j - 1);
               stringTomb.push(string);
               console.log(string, stringTomb);
+            } else {
+              changeDirection(i, j);
             }
           }
           if (map[i][j].direction === "UP") {
@@ -88,6 +108,8 @@ const step2 = () => {
               string = i - 1 + "" + (j + 1);
               stringTomb.push(string);
               console.log(string, stringTomb);
+            } else {
+              changeDirection(i, j);
             }
           }
         }

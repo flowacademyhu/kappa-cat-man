@@ -50,7 +50,7 @@ const generateMap = () => {
         objectMap[i][j] = {
           type: "enemy",
           icon: "E",
-          direction: "UP", //I just defined A random direction , can be anything for enemy
+          direction: "RIGHT", //I just defined A random direction , can be anything for enemy
           //maybe we can define a search function if he sees wall do not hit wall
           //HITTING WALL BAD
           color: "RED", // pc bro pc
