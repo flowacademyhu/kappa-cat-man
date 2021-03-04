@@ -98,24 +98,28 @@ pvpEvent = (i, j) => {
     map[i][j + 1].type = null;
     map[i][j + 1].direction = null;
     map[i][j + 1].color = null;
+    eletero--;
   }
   if (map[i][j].icon == "X" && map[i][j + 1].icon === "E") {
     map[i][j].icon = "D";
     map[i][j].type = null;
     map[i][j].direction = null;
     map[i][j].color = null;
+    eletero--;
   }
   if (map[i + 1][j].icon == "X" && map[i][j].icon === "E") {
     map[i + 1][j].icon = "D";
     map[i + 1][j].type = null;
     map[i + 1][j].direction = null;
     map[i + 1][j].color = null;
+    eletero--;
   }
   if (map[i][j].icon == "X" && map[i + 1][j].icon === "E") {
     map[i][j].icon = "D";
     map[i][j].type = null;
     map[i][j].direction = null;
     map[i][j].color = null;
+    eletero--;
   } //pvp vége
   //pvp kezdete Enem
   if (map[i][j + 1].icon == "T" && map[i][j].icon === "X") {
@@ -148,7 +152,7 @@ pvpEvent = (i, j) => {
   } //pvp vége targetre
 };
 
-let x = 1;
+let eletero = 1;
 let score = 0;
 addAssincronListener();
 const step2 = () => {
@@ -217,8 +221,44 @@ const step2 = () => {
     }
   }
   console.clear();
-
+  checkTarget();
+  if (eletero === 0) {
+    console.log("vesztettél");
+    clearInterval(myVar);
+  }
+  /* if (checkTarget() === false) {
+    console.log("Nyertél");
+    clearInterval(myVar);
+  }*/
   printMap();
   console.log("Your score Cat-man", score);
 };
-setInterval(step2, 500);
+
+var myVar = setInterval(step2, 500);
+const checkTarget = () => {
+  for (let i = 0; i < map.length; i++) {
+    for (let j = 0; j < map[i].length; j++) {
+      let counter = 0;
+      if (map[i][j].icon === "T") {
+        counter++;
+      }
+
+      if (counter === 0) {
+        console.log("nyertél00");
+        clearInterval(myVar);
+        return;
+      }
+    }
+  }
+};
+//var myVar = setInterval(s, 300);
+
+/*function setColor() {
+  var x = document.body;
+  x.style.backgroundColor =
+    x.style.backgroundColor == "yellow" ? "pink" : "yellow";
+}
+
+function stopColor() {
+  clearInterval(myVar);
+}*/
