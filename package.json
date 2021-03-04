@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/flowacademyhu/kappa-cat-man/issues"
   },
-  "homepage": "https://github.com/flowacademyhu/kappa-cat-man#readme"
+  "homepage": "https://github.com/flowacademyhu/kappa-cat-man#readme",
+  "dependencies": {
+    "axel": "^0.0.3",
+    "cfonts": "^2.9.1",
+    "get-pixels": "^3.3.2",
+    "node-axel": "^1.1.1",
+    "readline-sync": "^1.4.10",
+    "terminal-kit": "^2.0.5"
+  }
 }
