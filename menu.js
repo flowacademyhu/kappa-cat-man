@@ -3,6 +3,7 @@ let getPixels = require('get-pixels');
 let axel = require('axel');
 let cfonts = require('cfonts');
 let term = require('terminal-kit').terminal;
+
 cfonts.say('CATMAN', {
   font: 'block', // define the font face
   align: 'center', // define text alignment
@@ -17,19 +18,23 @@ cfonts.say('CATMAN', {
   transitionGradient: true, // define if this is a transition between colors directly
   env: 'node', // define the environment CFonts is being executed in
 });
+
 const game = () => {
-  console.log('juhu');
+  console.log(juhu);
 };
+
 const klari = () => {
   term.drawImage('./klarikam.jpg', {
     shrink: { width: 180, height: 1500 },
   });
 };
+
 const margit = () => {
   term.drawImage('./margitom.jpg', {
     shrink: { width: 180, height: 1500 },
   });
 };
+
 const items = [
   '                Új játék',
   '                Magas pontok',
@@ -58,6 +63,7 @@ term.singleColumnMenu(items, function (error, response) {
     process.exit();
   }
 });
+
 const madeBy = () => {
   console.log('made by Balázs Klári és Korda Gyuri <3');
 };
