@@ -73,7 +73,7 @@ const generateMap = () => {
   }
   //console.log(objectMap);
 
-  console.log(objectMap[5][4].type);
+  //console.log(objectMap[5][4].type);
   return objectMap;
 };
 /*
