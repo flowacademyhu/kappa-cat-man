@@ -91,6 +91,63 @@ const changeDirection = (i, j) => {
   }
 };
 
+pvpEvent = (i, j) => {
+  //pvp kezdete Enem
+  if (map[i][j + 1].icon == "X" && map[i][j].icon === "E") {
+    map[i][j + 1].icon = "D";
+    map[i][j + 1].type = null;
+    map[i][j + 1].direction = null;
+    map[i][j + 1].color = null;
+  }
+  if (map[i][j].icon == "X" && map[i][j + 1].icon === "E") {
+    map[i][j].icon = "D";
+    map[i][j].type = null;
+    map[i][j].direction = null;
+    map[i][j].color = null;
+  }
+  if (map[i + 1][j].icon == "X" && map[i][j].icon === "E") {
+    map[i + 1][j].icon = "D";
+    map[i + 1][j].type = null;
+    map[i + 1][j].direction = null;
+    map[i + 1][j].color = null;
+  }
+  if (map[i][j].icon == "X" && map[i + 1][j].icon === "E") {
+    map[i][j].icon = "D";
+    map[i][j].type = null;
+    map[i][j].direction = null;
+    map[i][j].color = null;
+  } //pvp vége
+  //pvp kezdete Enem
+  if (map[i][j + 1].icon == "T" && map[i][j].icon === "X") {
+    map[i][j + 1].icon = " ";
+    map[i][j + 1].type = null;
+    map[i][j + 1].direction = null;
+    map[i][j + 1].color = null;
+    score++;
+  }
+  if (map[i][j].icon == "T" && map[i][j + 1].icon === "X") {
+    map[i][j].icon = " ";
+    map[i][j].type = null;
+    map[i][j].direction = null;
+    map[i][j].color = null;
+    score++;
+  }
+  if (map[i + 1][j].icon == "T" && map[i][j].icon === "X") {
+    map[i + 1][j].icon = " ";
+    map[i + 1][j].type = null;
+    map[i + 1][j].direction = null;
+    map[i + 1][j].color = null;
+    score++;
+  }
+  if (map[i][j].icon == "T" && map[i + 1][j].icon === "X") {
+    map[i][j].icon = " ";
+    map[i][j].type = null;
+    map[i][j].direction = null;
+    map[i][j].color = null;
+    score++;
+  } //pvp vége targetre
+};
+
 let x = 1;
 let score = 0;
 addAssincronListener();
@@ -105,65 +162,12 @@ const step2 = () => {
 
       string = i + "" + j;
       if (stringTomb.includes(string) === false) {
+        pvpEvent(i, j);
         if (
           map[i][j].type === "target" ||
           map[i][j].type === "enemy" ||
           map[i][j].type === "player"
         ) {
-          //pvp kezdete Enem
-          if (map[i][j + 1].icon == "X" && map[i][j].icon === "E") {
-            map[i][j + 1].icon = "D";
-            map[i][j + 1].type = null;
-            map[i][j + 1].direction = null;
-            map[i][j + 1].color = null;
-          }
-          if (map[i][j].icon == "X" && map[i][j + 1].icon === "E") {
-            map[i][j].icon = "D";
-            map[i][j].type = null;
-            map[i][j].direction = null;
-            map[i][j].color = null;
-          }
-          if (map[i + 1][j].icon == "X" && map[i][j].icon === "E") {
-            map[i + 1][j].icon = "D";
-            map[i + 1][j].type = null;
-            map[i + 1][j].direction = null;
-            map[i + 1][j].color = null;
-          }
-          if (map[i][j].icon == "X" && map[i + 1][j].icon === "E") {
-            map[i][j].icon = "D";
-            map[i][j].type = null;
-            map[i][j].direction = null;
-            map[i][j].color = null;
-          } //pvp vége
-          //pvp kezdete Enem
-          if (map[i][j + 1].icon == "T" && map[i][j].icon === "X") {
-            map[i][j + 1].icon = " ";
-            map[i][j + 1].type = null;
-            map[i][j + 1].direction = null;
-            map[i][j + 1].color = null;
-            score++;
-          }
-          if (map[i][j].icon == "T" && map[i][j + 1].icon === "X") {
-            map[i][j].icon = " ";
-            map[i][j].type = null;
-            map[i][j].direction = null;
-            map[i][j].color = null;
-            score++;
-          }
-          if (map[i + 1][j].icon == "T" && map[i][j].icon === "X") {
-            map[i + 1][j].icon = " ";
-            map[i + 1][j].type = null;
-            map[i + 1][j].direction = null;
-            map[i + 1][j].color = null;
-            score++;
-          }
-          if (map[i][j].icon == "T" && map[i + 1][j].icon === "X") {
-            map[i][j].icon = " ";
-            map[i][j].type = null;
-            map[i][j].direction = null;
-            map[i][j].color = null;
-            score++;
-          } //pvp vége targetre
           if (map[i][j].direction === "RIGHT") {
             if (map[i][j + 1].icon !== "#") {
               const temp = map[i][j + 1];
@@ -215,6 +219,6 @@ const step2 = () => {
   console.clear();
 
   printMap();
-  console.log(score);
+  console.log("Your score Cat-man", score);
 };
 setInterval(step2, 500);
