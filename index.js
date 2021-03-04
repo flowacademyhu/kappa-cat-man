@@ -236,19 +236,18 @@ const step2 = () => {
 
 var myVar = setInterval(step2, 500);
 const checkTarget = () => {
+  let counter = 0;
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
-      let counter = 0;
       if (map[i][j].icon === "T") {
         counter++;
       }
-
-      if (counter === 0) {
-        console.log("nyertél00");
-        clearInterval(myVar);
-        return;
-      }
     }
+  }
+  if (counter === 0) {
+    console.log("nyertél00");
+    clearInterval(myVar);
+    return;
   }
 };
 //var myVar = setInterval(s, 300);
