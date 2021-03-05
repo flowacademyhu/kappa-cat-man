@@ -5,6 +5,7 @@ let cfonts = require("cfonts");
 let term = require("terminal-kit").terminal;
 const startGame = require("./index.js");
 const highS = require("./highscore.js");
+const menuwin = require("./menuwin.js");
 
 cfonts.say("CATMAN", {
   font: "block", // define the font face
@@ -53,9 +54,9 @@ term.singleColumnMenu(items, function (error, response) {
     const name = readLine.question("Mi a neved, csövi?");
     console.log("Üdvözlet ", name, "!");
 
-    setTimeout(klari, 3000);
-    setTimeout(madeBy, 4500);
-    setTimeout(game, 6000);
+    setTimeout(klari, 300);
+    setTimeout(madeBy, 450);
+    setTimeout(game, 600);
   } else if (response.selectedIndex === 1) {
     let highTomb = highS.generateHighScore();
     for (let i = 1; i < highTomb.length; i++) {
