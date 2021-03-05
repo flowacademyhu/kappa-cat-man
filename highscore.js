@@ -11,12 +11,23 @@ const generateHighScore = () => {
   return segedTomb;
   //console.log(segedT);
 };
-
-console.log(generateHighScore());
-console.log("A LEGMAGASABB PONTOK", typeof segedTomb);
+let highScore = [];
+highScore = generateHighScore();
+//console.log(generateHighScore());
+console.log("A LEGMAGASABB PONTOK", typeof highScore);
+console.log(highScore);
 //segedTomb.push("7");
 let xx = 32;
-fs.appendFile("highscore", "," + xx, (err) => {
+
+for (let i = 1; i < highScore.length; i++) {
+  highScore[i] = parseInt(highScore[i]);
+  i += 1;
+}
+/*fs.appendFile("highscore", "," + xx, (err) => {
   // In case of a error throw err.
   if (err) throw err;
-});
+});*/
+console.log(highScore);
+module.exports = {
+  generateHighScore,
+};
