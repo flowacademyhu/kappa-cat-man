@@ -53,7 +53,7 @@ term.singleColumnMenu(items, function (error, response) {
     const name = readLine.question("Mi a neved, csövi?");
     console.log("Üdvözlet ", name, "!");
 
-    setTimeout(klqari, 3000);
+    setTimeout(klari, 3000);
     setTimeout(madeBy, 4500);
     setTimeout(game, 6000);
   } else if (response.selectedIndex === 1) {
