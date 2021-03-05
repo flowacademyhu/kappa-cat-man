@@ -10,12 +10,12 @@ const generateMap = () => {
   //read and split with \n and "" by character
   const file = fs.readFileSync("./maps", { encoding: "utf8" });
   segedT = file.split("\n");
-  console.log(segedT);
+  //console.log(segedT);
   for (let i = 0; i < segedT.length; i++) {
     segedT2[i] = segedT[i].split("");
   }
   //JUst a log out to check if all GUcci my dude
-  console.log(segedT2);
+  //console.log(segedT2);
   const objectMap = segedT2;
   for (let i = 0; i < segedT.length; i++) {
     for (let j = 0; j < segedT2[i].length; j++) {

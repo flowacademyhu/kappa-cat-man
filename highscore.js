@@ -7,11 +7,16 @@ const generateHighScore = () => {
   //read and split with \n and "" by character
   const file = fs.readFileSync("./highscore", { encoding: "utf8" });
   segedTomb = file.split(",");
-
+  console.log("A LEGMAGASABB PONTOK", typeof segedTomb[2]);
   return segedTomb;
   //console.log(segedT);
 };
+
 console.log(generateHighScore());
+console.log("A LEGMAGASABB PONTOK", typeof segedTomb);
 //segedTomb.push("7");
-let xx = 7;
-fs.appendFile("highscore", xx);
+let xx = 32;
+fs.appendFile("highscore", "," + xx, (err) => {
+  // In case of a error throw err.
+  if (err) throw err;
+});

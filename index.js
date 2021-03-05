@@ -2,19 +2,41 @@
 const maps2 = require("./maps.js");
 const step = require("./gameplay.js");
 const readlinesync = require("readline-sync");
-
+var ctx = require("axel");
 //Time to use the functions fam
 const map = maps2.generateMap();
 
 const printMap = () => {
+  // ctx.point(1, 2, 10);
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       process.stdout.write(map[i][j].icon + " ");
+      /*  if (map[i][j].type === "player") {
+        ctx.bg(0, 255, 0);
+      }
+      if (map[i][j].type === "enemy") {
+        ctx.bg(255, 255, 0);
+      }
+      if (map[i][j].type === "wall") {
+        ctx.bg(255, 255, 240);
+      }
+      if (map[i][j].type === "target") {
+        ctx.bg(0, 0, 240);
+      }
+      if (map[i][j].type === null) {
+        ctx.bg(255, 0, 0);
+      }
+      ctx.point(j, i);
+      ctx.cursor.restore();
+    }
+    ctx.cursor.restore();
+  }
+  ctx.cursor.restore();
+};*/
     }
     console.log();
   }
 };
-printMap();
 
 /*let button = readlinesync.keyIn(); */
 const addAssincronListener = () => {
@@ -154,7 +176,8 @@ pvpEvent = (i, j) => {
 
 let eletero = 1;
 let score = 0;
-addAssincronListener();
+let myVar;
+
 const step2 = () => {
   /* */
 
@@ -234,8 +257,7 @@ const step2 = () => {
   console.log("Your score Cat-man", score);
 };
 
-var myVar = setInterval(step2, 500);
-const checkTarget = () => {
+const checkTarget = (myVar) => {
   let counter = 0;
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
@@ -249,6 +271,16 @@ const checkTarget = () => {
     clearInterval(myVar);
     return;
   }
+};
+
+const start = () => {
+  printMap();
+  addAssincronListener();
+  myVar = setInterval(step2, 500);
+};
+
+module.exports = {
+  start,
 };
 //var myVar = setInterval(s, 300);
 

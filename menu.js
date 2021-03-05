@@ -3,6 +3,7 @@ let getPixels = require("get-pixels");
 let axel = require("axel");
 let cfonts = require("cfonts");
 let term = require("terminal-kit").terminal;
+const startGame = require("./index.js");
 
 cfonts.say("CATMAN", {
   font: "block", // define the font face
@@ -20,7 +21,7 @@ cfonts.say("CATMAN", {
 });
 
 const game = () => {
-  console.log(juhu);
+  startGame.start();
 };
 
 const klari = () => {
@@ -50,6 +51,7 @@ term.singleColumnMenu(items, function (error, response) {
     term.grabInput(false);
     const name = readLine.question("Mi a neved, csövi?");
     console.log("Üdvözlet ", name, "!");
+
     setTimeout(klari, 3000);
     setTimeout(madeBy, 4500);
     setTimeout(game, 6000);
