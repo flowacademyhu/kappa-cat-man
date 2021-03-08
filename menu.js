@@ -1,25 +1,25 @@
-let readLine = require("readline-sync");
-let getPixels = require("get-pixels");
-let axel = require("axel");
-let cfonts = require("cfonts");
-let term = require("terminal-kit").terminal;
-const startGame = require("./index.js");
-const highS = require("./highscore.js");
-const menuwin = require("./menuwin.js");
+let readLine = require('readline-sync');
+let getPixels = require('get-pixels');
+let axel = require('axel');
+let cfonts = require('cfonts');
+let term = require('terminal-kit').terminal;
+const startGame = require('./index.js');
+const highS = require('./highscore.js');
+//const menuwin = require('./menuwin.js');
 
-cfonts.say("CATMAN", {
-  font: "block", // define the font face
-  align: "center", // define text alignment
-  colors: ["system"], // define all colors
-  background: "transparent", // define the background color, you can also use `backgroundColor` here as key
+cfonts.say('CATMAN', {
+  font: 'block', // define the font face
+  align: 'center', // define text alignment
+  colors: ['system'], // define all colors
+  background: 'transparent', // define the background color, you can also use `backgroundColor` here as key
   letterSpacing: 1, // define letter spacing
   lineHeight: 1, // define the line height
   space: true, // define if the output text should have empty lines on top and on the bottom
-  maxLength: "0", // define how many character can be on one line
-  gradient: "magenta,yellow", // define your two gradient colors
+  maxLength: '0', // define how many character can be on one line
+  gradient: 'magenta,yellow', // define your two gradient colors
   independentGradient: true, // define if you want to recalculate the gradient for each new line
   transitionGradient: true, // define if this is a transition between colors directly
-  env: "node", // define the environment CFonts is being executed in
+  env: 'node', // define the environment CFonts is being executed in
 });
 
 const game = () => {
@@ -27,36 +27,37 @@ const game = () => {
 };
 
 const klari = () => {
-  term.drawImage("./klarikam.jpg", {
+  term.drawImage('./klarikam.jpg', {
     shrink: { width: 180, height: 1500 },
   });
 };
 
 const margit = () => {
-  term.drawImage("./margitom.jpg", {
+  term.drawImage('./margitom.jpg', {
     shrink: { width: 180, height: 1500 },
   });
 };
 
 const items = [
-  "                Új játék",
-  "                Magas pontok",
-  "                Kreditsz :) ",
-  "                Kijárat (egzit)",
+  '                Új játék',
+  '                Magas pontok',
+  '                Kreditsz :) ',
+  '                Kijárat (egzit)',
 ];
 term.singleColumnMenu(items, function (error, response) {
-  term("\n").eraseLineAfter.red(
-    "Eztet választottad ki: %s\n",
+  term('\n').eraseLineAfter.red(
+    'Eztet választottad ki: %s\n',
     response.selectedText
   );
   if (response.selectedIndex === 0) {
     term.grabInput(false);
-    const name = readLine.question("Mi a neved, csövi?");
-    console.log("Üdvözlet ", name, "!");
+    const name = readLine.question('Mi a neved, csövi?');
+    console.log('Üdvözlet ', name, '!');
 
     setTimeout(klari, 300);
     setTimeout(madeBy, 450);
     setTimeout(game, 600);
+    //menuwin.menuAfterWin();
   } else if (response.selectedIndex === 1) {
     let highTomb = highS.generateHighScore();
     for (let i = 1; i < highTomb.length; i++) {
@@ -75,5 +76,5 @@ term.singleColumnMenu(items, function (error, response) {
 });
 
 const madeBy = () => {
-  console.log("made by Balázs Klári és Korda Gyuri <3");
+  console.log('made by Balázs Klári és Korda Gyuri <3');
 };
