@@ -83,7 +83,10 @@ term.singleColumnMenu(items, function (error, response) {
       highTomb[i] = parseInt(highTomb[i]);
       i += 1;
     }*/
-
+    for (let i = 1; i < highTomb.length; i = i + 2) {
+      highTomb[i] = parseInt(highTomb[i]);
+    }
+    highS.minimumSelectionSort(highTomb);
     //console.log(highTomb);
     console.log(highTomb);
     term.grabInput(false);
