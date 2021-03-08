@@ -1,9 +1,12 @@
 //just inporting maps.js
 const maps2 = require("./maps.js");
 const step = require("./gameplay.js");
+const menu = require("./menu.js");
+const highS = require("./highscore.js");
 const readlinesync = require("readline-sync");
 const menuwin = require("./menuwin.js");
 var ctx = require("axel");
+const fs = require("fs");
 //Time to use the functions fam
 const map = maps2.generateMap();
 let tombXD = [];
@@ -189,7 +192,7 @@ const step2 = () => {
   let string;
   for (let i = 1; i < map.length - 1; i++) {
     for (let j = 1; j < map[i].length - 1; j++) {
-      //wallra és emtyre nem történik semmi
+      //wallra és emtyre nem történik semmissas
 
       string = i + "" + j;
       if (stringTomb.includes(string) === false) {
@@ -273,8 +276,16 @@ const checkTarget = (myVar) => {
   }
   if (counter === 0) {
     console.log("nyertél00");
+
     clearInterval(tombXD[0]);
-    menuwin.menuAfterWin();
+    let pont = score;
+
+    // let highTomb = highS.generateHighScore();
+    // highTomb.push(score);
+    fs.appendFile("highscore", score, function (err) {
+      if (err) throw err;
+    });
+    //menuwin.menuAfterWin();
     return;
   }
 };
@@ -293,14 +304,3 @@ module.exports = {
   start,
   score,
 };
-//var myVar = setInterval(s, 300);
-
-/*function setColor() {
-  var x = document.body;
-  x.style.backgroundColor =
-    x.style.backgroundColor == "yellow" ? "pink" : "yellow";
-}
-
-function stopColor() {
-  clearInterval(myVar);
-}*/

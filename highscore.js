@@ -47,10 +47,10 @@ for (let i = 1; i < highScore.length; i++) {
   i += 1;
 }
 
-if (parseInt(highScore[highScore.length - 1]) !== NaN) {
+/*if (parseInt(highScore[highScore.length - 1]) !== NaN) {
   highScore[highScore.length] = "Béla";
   highScore[highScore.length] = start.score;
-}
+}*/
 minimumSelectionSort(highScore);
 /*for (let i = 1; i < highScore.length; i++) {
   fs.writeFile("highscore", "," + highScore[i], (err) => {
@@ -61,9 +61,17 @@ minimumSelectionSort(highScore);
 //tomb nev1,2,nev2,17,nev3,8,nev4,4,nev5,9,nev6,24,nev7,52,nev8,12,nev9,42
 
 //for (let i = 1; i < highScore.length; i++) {
-fs.writeFile("highscore", highScore, function (err) {
-  if (err) throw err;
-});
+
+//highscore write function
+let pont = start.score;
+/*const highWrite = (highScore, highNev, pont) =>
+  fs.writeFile(
+    "highscore",
+    highScore + "," + highNev + "," + pont,
+    function (err) {
+      if (err) throw err;
+    }
+  );*/
 //}
 console.log(highScore);
 module.exports = {
