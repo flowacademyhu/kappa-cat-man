@@ -59,10 +59,10 @@ term.singleColumnMenu(items, function (error, response) {
     setTimeout(game, 600);
   } else if (response.selectedIndex === 1) {
     let highTomb = highS.generateHighScore();
-    for (let i = 1; i < highTomb.length; i++) {
+    /*for (let i = 1; i < highTomb.length; i++) {
       highTomb[i] = parseInt(highTomb[i]);
       i += 1;
-    }
+    }*/
     console.log(highTomb);
     term.grabInput(false);
   } else if (response.selectedIndex === 2) {
