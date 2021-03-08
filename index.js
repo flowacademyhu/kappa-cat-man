@@ -291,6 +291,7 @@ const start = () => {
 
 module.exports = {
   start,
+  score,
 };
 //var myVar = setInterval(s, 300);
 

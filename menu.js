@@ -77,3 +77,7 @@ term.singleColumnMenu(items, function (error, response) {
 const madeBy = () => {
   console.log("made by Balázs Klári és Korda Gyuri <3");
 };
+/*
+module.exports = {
+  name,
+};*/
