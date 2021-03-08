@@ -9,18 +9,37 @@ const generateHighScore = () => {
   //read and split with \n and "" by character
   const file = fs.readFileSync("./highscore", { encoding: "utf8" });
   segedTomb = file.split(",");
-  console.log("A LEGMAGASABB PONTOK", typeof segedTomb[0]);
-  return segedTomb;
+  for (let i = 1; i < segedTomb.length; i++) {
+    segedTomb[i] = parseInt(segedTomb[i]);
+    i += 1;
+  }
+  fs.appendFile("highscore", "", (err) => {
+    // In case of a error throw err.
+    if (err) throw err;
+  });
+  let mentettTomb = minimumSelectionSort(segedTomb);
+  for (let i = 1; i < mentettTomb.length; i++) {
+    fs.appendFile("highscore", "," + mentettTomb[i], (err) => {
+      // In case of a error throw err.
+      if (err) throw err;
+    });
+  }
+  //console.log("A LEGMAGASABB PONTOK", typeof segedTomb[0]);
+  return mentettTomb;
   //console.log(segedT);
 };
+
+//let mentettTomb = minimumSelectionSort();
 const minimumSelectionSort = (src) => {
-  for (let i = 1; i < src.length - 2; i++) {
+  for (let i = 1; i < highScore.length; i = i + 2) {
+    highScore[i] = parseInt(highScore[i]);
+  }
+  for (let i = 1; i < src.length - 2; i += 2) {
     let minIndex = i;
-    for (let j = i + 2; j < src.length; j++) {
+    for (let j = i + 2; j < src.length; j += 2) {
       if (src[j] < src[minIndex]) {
         minIndex = j;
       }
-      j += 1;
     }
     if (minIndex !== i) {
       let temp = src[minIndex];
@@ -30,12 +49,12 @@ const minimumSelectionSort = (src) => {
       src[minIndex - 1] = src[i - 1];
       src[i - 1] = temp;
     }
-    i += 1;
   }
+  return src;
 };
 
 let highScore = [];
-highScore = generateHighScore();
+//highScore = generateHighScore();
 
 //console.log(generateHighScore());
 //console.log("A LEGMAGASABB PONTOK", typeof highScore);
@@ -51,7 +70,7 @@ for (let i = 1; i < highScore.length; i++) {
   highScore[highScore.length] = "Béla";
   highScore[highScore.length] = start.score;
 }*/
-minimumSelectionSort(highScore);
+//minimumSelectionSort(highScore);
 /*for (let i = 1; i < highScore.length; i++) {
   fs.writeFile("highscore", "," + highScore[i], (err) => {
     // In case of a error throw err.
@@ -63,7 +82,7 @@ minimumSelectionSort(highScore);
 //for (let i = 1; i < highScore.length; i++) {
 
 //highscore write function
-let pont = start.score;
+//let pont = start.score;
 /*const highWrite = (highScore, highNev, pont) =>
   fs.writeFile(
     "highscore",
@@ -73,7 +92,8 @@ let pont = start.score;
     }
   );*/
 //}
-console.log(highScore);
+//console.log(highScore);
 module.exports = {
   generateHighScore,
+  minimumSelectionSort,
 };

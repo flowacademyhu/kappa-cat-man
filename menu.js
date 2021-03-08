@@ -84,6 +84,7 @@ term.singleColumnMenu(items, function (error, response) {
       i += 1;
     }*/
 
+    //console.log(highTomb);
     console.log(highTomb);
     term.grabInput(false);
   } else if (response.selectedIndex === 2) {
