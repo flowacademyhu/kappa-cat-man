@@ -1,9 +1,13 @@
 //just inporting maps.js
 const maps2 = require("./maps.js");
 const step = require("./gameplay.js");
+const menu = require("./menu.js");
+const highS = require("./highscore.js");
 const readlinesync = require("readline-sync");
 const menuwin = require("./menuwin.js");
 const term = require("terminal-kit").terminal;
+const fs = require("fs");
+
 //Time to use the functions fam
 const map = maps2.generateMap();
 let tombXD = [];
@@ -27,43 +31,14 @@ const printMap = () => {
   }
 };
 
-/* const printMap = () => {
-  ctx.clear();
-  ctx.bg(124, 0, 0);
-  for (let i = 0; i < map.length; i++) {
-    for (let j = 0; j < map[i].length; j++) {
-      if (map[i][j].icon === " ") {
-        ctx.point(j + 1, i + 1, " ");
-      }
-      if (map[i][j].icon === "#") {
-        ctx.fg(255, 255, 255);
-        ctx.text(j + 1, i + 1, "▓");
-      }
-      if (map[i][j].icon === "X") {
-        ctx.text(j + 1, i + 1, "🐈");
-      }
-      if (map[i][j].icon === "E") {
-        ctx.fg(255, 255, 255);
-        ctx.text(j + 1, i + 1, "E");
-      }
-      if (map[i][j].icon === "T") {
-        ctx.fg(255, 255, 255);
-        ctx.text(j + 1, i + 1, "T");
-      }
-    }
-  }
-  ctx.bg(0, 0, 0);
-};
-
-*/
-
 console.log();
 
+const stdin = process.stdin;
 /*let button = readlinesync.keyIn(); */
 const addAssincronListener = () => {
   let myVar = setInterval(step2, 500);
   tombXD[0] = myVar;
-  const stdin = process.stdin;
+
   stdin.setRawMode(true); // Ne várjon enterre
   stdin.resume(); // Csak process.exit-el lehet kilépni
   stdin.setEncoding("utf8"); // Karaktereket kapjunk vissza
@@ -207,7 +182,7 @@ const step2 = () => {
   let string;
   for (let i = 1; i < map.length - 1; i++) {
     for (let j = 1; j < map[i].length - 1; j++) {
-      //wallra és emtyre nem történik semmi
+      //wallra és emtyre nem történik semmissas
 
       string = i + "" + j;
       if (stringTomb.includes(string) === false) {
@@ -270,8 +245,26 @@ const step2 = () => {
   if (eletero === 0) {
     console.log("vesztettél");
     clearInterval(tombXD[0]);
+    console.clear();
+
+    let highTomb = highS.generateHighScore();
+
+    highS.minimumSelectionSort(highTomb);
+    for (let i = 0; i < highTomb.length; i += 2) {
+      if (i === highTomb.length - 2) {
+        process.stdout.write(highTomb[i] + ":" + score);
+        console.log();
+      } else {
+        process.stdout.write(highTomb[i] + ":" + highTomb[i + 1]);
+        console.log();
+      }
+    }
+    fs.appendFile("highscore", score, function (err) {
+      if (err) throw err;
+    });
     return;
   }
+
   /* if (checkTarget() === false) {
     console.log("Nyertél");
     clearInterval(myVar);
@@ -280,7 +273,7 @@ const step2 = () => {
   console.log("Your score Cat-man", score);
 };
 
-const checkTarget = (myVar) => {
+const checkTarget = () => {
   let counter = 0;
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
@@ -291,8 +284,30 @@ const checkTarget = (myVar) => {
   }
   if (counter === 0) {
     console.log("nyertél00");
+    // process.stdin.removeAllListeners('data');
+    // process.stdin.removeAllListeners('keypress');
+    // process.stdin.setRawMode(false);
+    // process.stdin.resume();
+    // process.stdin.end();
     clearInterval(tombXD[0]);
-    menuwin.menuAfterWin();
+    console.clear();
+
+    let highTomb = highS.generateHighScore();
+
+    highS.minimumSelectionSort(highTomb);
+    for (let i = 0; i < highTomb.length; i += 2) {
+      if (i === highTomb.length - 2) {
+        process.stdout.write(highTomb[i] + ":" + score);
+        console.log();
+      } else {
+        process.stdout.write(highTomb[i] + ":" + highTomb[i + 1]);
+        console.log();
+      }
+    }
+    fs.appendFile("highscore", score, function (err) {
+      if (err) throw err;
+    });
+    //menuwin.menuAfterWin();
     return;
   }
 };
@@ -309,15 +324,5 @@ const start = () => {
 
 module.exports = {
   start,
+  score,
 };
-//var myVar = setInterval(s, 300);
-
-/*function setColor() {
-  var x = document.body;
-  x.style.backgroundColor =
-    x.style.backgroundColor == "yellow" ? "pink" : "yellow";
-}
-
-function stopColor() {
-  clearInterval(myVar);
-}*/
