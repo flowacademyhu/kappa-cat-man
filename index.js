@@ -256,8 +256,24 @@ const step2 = () => {
   checkTarget();
   if (eletero === 0) {
     console.log('vesztettél');
-    stdin.removeAllListeners('data');
     clearInterval(tombXD[0]);
+    console.clear();
+
+    let highTomb = highS.generateHighScore();
+
+    highS.minimumSelectionSort(highTomb);
+    for (let i = 0; i < highTomb.length; i += 2) {
+      if (i === highTomb.length - 2) {
+        process.stdout.write(highTomb[i] + ':' + score);
+        console.log();
+      } else {
+        process.stdout.write(highTomb[i] + ':' + highTomb[i + 1]);
+        console.log();
+      }
+    }
+    fs.appendFile('highscore', score, function (err) {
+      if (err) throw err;
+    });
     return;
   }
 
