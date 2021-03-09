@@ -7,8 +7,15 @@ const generateMap = () => {
   //defined 2empty array for the read
   let segedT = [];
   let segedT2 = [];
+  let randomMap = Math.floor(Math.random() * 3);
   //read and split with \n and "" by character
-  const file = fs.readFileSync("./maps", { encoding: "utf8" });
+  if (randomMap === 0) {
+    file = fs.readFileSync("./maps", { encoding: "utf8" });
+  } else if (randomMap === 1) {
+    file = fs.readFileSync("./maps2", { encoding: "utf8" });
+  } else if (randomMap === 2) {
+    file = fs.readFileSync("./maps3", { encoding: "utf8" });
+  }
   segedT = file.split("\n");
   //console.log(segedT);
   for (let i = 0; i < segedT.length; i++) {

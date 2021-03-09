@@ -62,10 +62,10 @@ term.singleColumnMenu(items, function (error, response) {
     name = readLine.question('Mi a neved, csövi?');
     console.log('Üdvözlet ', name, '!');
 
-    setTimeout(klari, 300);
-    setTimeout(madeBy, 450);
+    setTimeout(klari, 30);
+    setTimeout(madeBy, 40);
     //here we start the game , function from index.js and setIntervel
-    setTimeout(game, 600);
+    setTimeout(game, 60);
     fajlbaIras(name);
   }
   //generating highScore from file, sorting it descending and print
