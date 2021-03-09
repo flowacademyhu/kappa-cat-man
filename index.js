@@ -9,6 +9,7 @@ var ctx = require('axel');
 const fs = require('fs');
 //Time to use the functions fam
 const map = maps2.generateMap();
+const map2 = map;
 let tombXD = [];
 
 const printMap = () => {
@@ -258,6 +259,7 @@ const step2 = () => {
     console.log('vesztettél');
     clearInterval(tombXD[0]);
     console.clear();
+    maps2.generateMap();
 
     let highTomb = highS.generateHighScore();
 
@@ -274,6 +276,10 @@ const step2 = () => {
     fs.appendFile('highscore', score, function (err) {
       if (err) throw err;
     });
+    let button = readlinesync.keyIn('DÖGÖLJ MEG');
+    if (button === 'y') {
+      menu.game();
+    }
     return;
   }
 

@@ -22,6 +22,7 @@ cfonts.say('CATMAN', {
   transitionGradient: true, // define if this is a transition between colors directly
   env: 'node', // define the environment CFonts is being executed in
 });
+
 let name = '';
 const game = () => {
   startGame.start();
@@ -94,4 +95,5 @@ const madeBy = () => {
 
 module.exports = {
   name,
+  game,
 };
