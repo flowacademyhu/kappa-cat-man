@@ -26,6 +26,7 @@ let name = "";
 const game = () => {
   startGame.start();
 };
+//this function writes the name in the file and the two , . the score comes from index.js
 const fajlbaIras = (name) => {
   fs.appendFile("highscore", "," + name + ",", function (err) {
     if (err) throw err;
@@ -59,36 +60,24 @@ term.singleColumnMenu(items, function (error, response) {
     term.grabInput(false);
     name = readLine.question("Mi a neved, csövi?");
     console.log("Üdvözlet ", name, "!");
-    /*fs.appendFile("highscore", "," + name + ",", function (err) {
-      if (err) throw err;
-    });*/
 
     setTimeout(klari, 300);
     setTimeout(madeBy, 450);
+    //here we start the game , function from index.js and setIntervel
     setTimeout(game, 600);
     fajlbaIras(name);
-    //let pont = startGame.score;
-    // let highTomb = highS.generateHighScore();
-    //highS.highWrite(highTomb, name, pont);
-    /*  fs.appendFile("highscore", "," + name + ",", function (err) {
-      if (err) throw err;
-    });
-    highTomb.push(",");
-    highTomb.push(name);
-    highTomb.push(",");
-    console.log(highS.highScore);*/
-  } else if (response.selectedIndex === 1) {
+  }
+  //generating highScore from file, sorting it descending and print
+  else if (response.selectedIndex === 1) {
     let highTomb = highS.generateHighScore();
-    /*for (let i = 1; i < highTomb.length; i++) {
-      highTomb[i] = parseInt(highTomb[i]);
-      i += 1;
-    }*/
-    for (let i = 1; i < highTomb.length; i = i + 2) {
-      highTomb[i] = parseInt(highTomb[i]);
-    }
+
     highS.minimumSelectionSort(highTomb);
-    //console.log(highTomb);
-    console.log(highTomb);
+    for (let i = 0; i < highTomb.length; i += 2) {
+      process.stdout.write(highTomb[i] + ":" + highTomb[i + 1]);
+
+      console.log();
+    }
+    // console.log(highTomb);
     term.grabInput(false);
   } else if (response.selectedIndex === 2) {
     term.grabInput(false);
