@@ -1,10 +1,12 @@
 //just inporting maps.js
 const maps2 = require('./maps.js');
 const step = require('./gameplay.js');
+const menu = require('./menu.js');
+const highS = require('./highscore.js');
 const readlinesync = require('readline-sync');
 const menuwin = require('./menuwin.js');
-const menu = require('./menu.js');
 var ctx = require('axel');
+const fs = require('fs');
 //Time to use the functions fam
 const map = maps2.generateMap();
 let tombXD = [];
@@ -20,7 +22,9 @@ const printMap = () => {
       }
       if (map[i][j].type === "enemy") {
         ctx.bg(255, 255, 0);
-      }
+      }for (let i = 0; i < player.ammo.length; i++) {
+        if (player.ammo[i].x === column && player.ammo[i].y === row) {
+          gameMap[row][column] = '🔺';
       if (map[i][j].type === "wall") {
         ctx.bg(255, 255, 240);
       }
@@ -190,7 +194,7 @@ const step2 = () => {
   let string;
   for (let i = 1; i < map.length - 1; i++) {
     for (let j = 1; j < map[i].length - 1; j++) {
-      //wallra és emtyre nem történik semmi
+      //wallra és emtyre nem történik semmissas
 
       string = i + '' + j;
       if (stringTomb.includes(string) === false) {
@@ -276,13 +280,30 @@ const checkTarget = () => {
   }
   if (counter === 0) {
     console.log('nyertél00');
-    process.stdin.removeAllListeners('data');
-    process.stdin.removeAllListeners('keypress');
-    process.stdin.setRawMode(false);
-    process.stdin.resume();
-    process.stdin.end();
+    // process.stdin.removeAllListeners('data');
+    // process.stdin.removeAllListeners('keypress');
+    // process.stdin.setRawMode(false);
+    // process.stdin.resume();
+    // process.stdin.end();
     clearInterval(tombXD[0]);
-    menuwin.menuAfterWin();
+    console.clear();
+
+    let highTomb = highS.generateHighScore();
+
+    highS.minimumSelectionSort(highTomb);
+    for (let i = 0; i < highTomb.length; i += 2) {
+      if (i === highTomb.length - 2) {
+        process.stdout.write(highTomb[i] + ':' + score);
+        console.log();
+      } else {
+        process.stdout.write(highTomb[i] + ':' + highTomb[i + 1]);
+        console.log();
+      }
+    }
+    fs.appendFile('highscore', score, function (err) {
+      if (err) throw err;
+    });
+    //menuwin.menuAfterWin();
     return;
   }
 };
@@ -299,15 +320,5 @@ const start = () => {
 
 module.exports = {
   start,
+  score,
 };
-//var myVar = setInterval(s, 300);
-
-/*function setColor() {
-  var x = document.body;
-  x.style.backgroundColor =
-    x.style.backgroundColor == "yellow" ? "pink" : "yellow";
-}
-
-function stopColor() {
-  clearInterval(myVar);
-}*/

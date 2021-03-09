@@ -5,7 +5,8 @@ let cfonts = require('cfonts');
 let term = require('terminal-kit').terminal;
 const startGame = require('./index.js');
 const highS = require('./highscore.js');
-//const menuwin = require('./menuwin.js');
+const menuwin = require('./menuwin.js');
+const fs = require('fs');
 
 cfonts.say('CATMAN', {
   font: 'block', // define the font face
@@ -21,9 +22,15 @@ cfonts.say('CATMAN', {
   transitionGradient: true, // define if this is a transition between colors directly
   env: 'node', // define the environment CFonts is being executed in
 });
-
+let name = '';
 const game = () => {
   startGame.start();
+};
+//this function writes the name in the file and the two , . the score comes from index.js
+const fajlbaIras = (name) => {
+  fs.appendFile('highscore', ',' + name + ',', function (err) {
+    if (err) throw err;
+  });
 };
 
 const klari = () => {
@@ -51,20 +58,26 @@ term.singleColumnMenu(items, function (error, response) {
   );
   if (response.selectedIndex === 0) {
     term.grabInput(false);
-    const name = readLine.question('Mi a neved, csövi?');
+    name = readLine.question('Mi a neved, csövi?');
     console.log('Üdvözlet ', name, '!');
 
     setTimeout(klari, 300);
     setTimeout(madeBy, 450);
+    //here we start the game , function from index.js and setIntervel
     setTimeout(game, 600);
-    //menuwin.menuAfterWin();
-  } else if (response.selectedIndex === 1) {
+    fajlbaIras(name);
+  }
+  //generating highScore from file, sorting it descending and print
+  else if (response.selectedIndex === 1) {
     let highTomb = highS.generateHighScore();
-    for (let i = 1; i < highTomb.length; i++) {
-      highTomb[i] = parseInt(highTomb[i]);
-      i += 1;
+
+    highS.minimumSelectionSort(highTomb);
+    for (let i = 0; i < highTomb.length; i += 2) {
+      process.stdout.write(highTomb[i] + ':' + highTomb[i + 1]);
+
+      console.log();
     }
-    console.log(highTomb);
+    // console.log(highTomb);
     term.grabInput(false);
   } else if (response.selectedIndex === 2) {
     term.grabInput(false);
@@ -77,4 +90,8 @@ term.singleColumnMenu(items, function (error, response) {
 
 const madeBy = () => {
   console.log('made by Balázs Klári és Korda Gyuri <3');
+};
+
+module.exports = {
+  name,
 };

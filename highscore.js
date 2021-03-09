@@ -1,4 +1,6 @@
 const fs = require("fs");
+const start = require("./index.js");
+const nev = require("./menu.js");
 //NOTE: HAPPY TO RENAME ANYTHING , MAPS AND MAPS.JS A BIT CONFUSING
 //Made the code a function , now we can call it in maps.js
 const generateHighScore = () => {
@@ -7,27 +9,34 @@ const generateHighScore = () => {
   //read and split with \n and "" by character
   const file = fs.readFileSync("./highscore", { encoding: "utf8" });
   segedTomb = file.split(",");
-  console.log("A LEGMAGASABB PONTOK", typeof segedTomb[2]);
+  //making all the numbers integer for comparing
+  for (let i = 1; i < segedTomb.length; i += 2) {
+    segedTomb[i] = parseInt(segedTomb[i]);
+  }
   return segedTomb;
-  //console.log(segedT);
 };
-let highScore = [];
-highScore = generateHighScore();
-//console.log(generateHighScore());
-console.log("A LEGMAGASABB PONTOK", typeof highScore);
-console.log(highScore);
-//segedTomb.push("7");
-let xx = 32;
-
-for (let i = 1; i < highScore.length; i++) {
-  highScore[i] = parseInt(highScore[i]);
-  i += 1;
-}
-/*fs.appendFile("highscore", "," + xx, (err) => {
-  // In case of a error throw err.
-  if (err) throw err;
-});*/
-console.log(highScore);
+//sorting array descending , maxSearch
+const minimumSelectionSort = (src) => {
+  for (let i = 1; i < src.length - 2; i += 2) {
+    let minIndex = i;
+    for (let j = i + 2; j < src.length; j += 2) {
+      if (src[j] > src[minIndex]) {
+        minIndex = j;
+      }
+    }
+    if (minIndex !== i) {
+      let temp = src[minIndex];
+      src[minIndex] = src[i];
+      src[i] = temp;
+      temp = src[minIndex - 1];
+      src[minIndex - 1] = src[i - 1];
+      src[i - 1] = temp;
+    }
+  }
+  return src;
+};
+//exporting to menu.js
 module.exports = {
   generateHighScore,
+  minimumSelectionSort,
 };
