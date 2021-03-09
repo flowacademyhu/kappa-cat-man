@@ -7,7 +7,7 @@ const generateHighScore = () => {
   //defined 2empty array for the read
   let segedTomb = [];
   //read and split with \n and "" by character
-  const file = fs.readFileSync("./highscore", { encoding: "utf8" });
+  const file = fs.readFileSync("./highscore.txt", { encoding: "utf8" });
   segedTomb = file.split(",");
   //making all the numbers integer for comparing
   for (let i = 1; i < segedTomb.length; i += 2) {
