@@ -20,7 +20,9 @@
     "axel": "0.0.3",
     "cfonts": "^2.9.1",
     "get-pixels": "^3.3.2",
+    "node-emoji": "^1.10.0",
     "readline-sync": "^1.4.10",
+    "table": "^6.0.7",
     "terminal-kit": "^2.0.5"
   }
 }

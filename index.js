@@ -3,43 +3,61 @@ const maps2 = require("./maps.js");
 const step = require("./gameplay.js");
 const readlinesync = require("readline-sync");
 const menuwin = require("./menuwin.js");
-var ctx = require("axel");
+const term = require("terminal-kit").terminal;
 //Time to use the functions fam
 const map = maps2.generateMap();
 let tombXD = [];
 
 const printMap = () => {
-  // ctx.point(1, 2, 10);
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
-      process.stdout.write(map[i][j].icon + " ");
-
-      /*  if (map[i][j].type === "player") {
-        ctx.bg(0, 255, 0);
+      if (map[i][j].icon === "X") {
+        term.red("🐈");
+      } else if (map[i][j].icon === "#") {
+        term.red("🧱");
+      } else if (map[i][j].icon === "T") {
+        term.red("🐁");
+      } else if (map[i][j].icon === "E") {
+        term.red("👮");
+      } else {
+        term.red(map[i][j].icon + " ");
       }
-      if (map[i][j].type === "enemy") {
-        ctx.bg(255, 255, 0);
-      }
-      if (map[i][j].type === "wall") {
-        ctx.bg(255, 255, 240);
-      }
-      if (map[i][j].type === "target") {
-        ctx.bg(0, 0, 240);
-      }
-      if (map[i][j].type === null) {
-        ctx.bg(255, 0, 0);
-      }
-      ctx.point(j, i);
-      ctx.cursor.restore();
     }
-    ctx.cursor.restore();
-  }
-  ctx.cursor.restore();
-};*/
-    }
-    console.log();
+    term("\n");
   }
 };
+
+/* const printMap = () => {
+  ctx.clear();
+  ctx.bg(124, 0, 0);
+  for (let i = 0; i < map.length; i++) {
+    for (let j = 0; j < map[i].length; j++) {
+      if (map[i][j].icon === " ") {
+        ctx.point(j + 1, i + 1, " ");
+      }
+      if (map[i][j].icon === "#") {
+        ctx.fg(255, 255, 255);
+        ctx.text(j + 1, i + 1, "▓");
+      }
+      if (map[i][j].icon === "X") {
+        ctx.text(j + 1, i + 1, "🐈");
+      }
+      if (map[i][j].icon === "E") {
+        ctx.fg(255, 255, 255);
+        ctx.text(j + 1, i + 1, "E");
+      }
+      if (map[i][j].icon === "T") {
+        ctx.fg(255, 255, 255);
+        ctx.text(j + 1, i + 1, "T");
+      }
+    }
+  }
+  ctx.bg(0, 0, 0);
+};
+
+*/
+
+console.log();
 
 /*let button = readlinesync.keyIn(); */
 const addAssincronListener = () => {

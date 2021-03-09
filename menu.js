@@ -6,6 +6,8 @@ let term = require("terminal-kit").terminal;
 const startGame = require("./index.js");
 const highS = require("./highscore.js");
 const menuwin = require("./menuwin.js");
+axel.clear();
+axel.bg(0, 0, 0);
 
 cfonts.say("CATMAN", {
   font: "block", // define the font face
@@ -21,6 +23,10 @@ cfonts.say("CATMAN", {
   transitionGradient: true, // define if this is a transition between colors directly
   env: "node", // define the environment CFonts is being executed in
 });
+
+console.log("😺");
+console.log("😺");
+console.log("😺");
 
 const game = () => {
   startGame.start();
