@@ -20,18 +20,18 @@ const game = (name) => {
 };
 
 cfonts.say("CATMAN", {
-  font: "block", // define the font face
-  align: "center", // define text alignment
-  colors: ["system"], // define all colors
-  background: "transparent", // define the background color, you can also use `backgroundColor` here as key
-  letterSpacing: 1, // define letter spacing
-  lineHeight: 1, // define the line height
-  space: true, // define if the output text should have empty lines on top and on the bottom
-  maxLength: "0", // define how many character can be on one line
-  gradient: "magenta,yellow", // define your two gradient colors
-  independentGradient: true, // define if you want to recalculate the gradient for each new line
-  transitionGradient: true, // define if this is a transition between colors directly
-  env: "node", // define the environment CFonts is being executed in
+  font: "block",
+  align: "center",
+  colors: ["system"],
+  background: "transparent",
+  letterSpacing: 1,
+  lineHeight: 1,
+  space: true,
+  maxLength: "0",
+  gradient: "magenta,yellow",
+  independentGradient: true,
+  transitionGradient: true,
+  env: "node",
 });
 
 const klari = () => {
@@ -42,33 +42,29 @@ const klari = () => {
 
 const margit = () => {
   term.drawImage("./margitom.jpg", {
-    shrink: { width: 180, height: 1500 },
+    shrink: { width: 180, height: 150 },
   });
 };
 
 const items = [
-  "                Új játék",
-  "                Magas pontok",
-  "                Kreditsz :) ",
-  "                Kijárat (egzit)",
+  "                😻 New Game",
+  "                😸 Highscores",
+  "                🙀 Credits",
+  "                😿 Exit",
 ];
 term.singleColumnMenu(items, function (error, response) {
-  term("\n").eraseLineAfter.red(
-    "Eztet választottad ki: %s\n",
-    response.selectedText
-  );
+  term("\n").eraseLineAfter.red("You chose: %s\n", response.selectedText);
   if (response.selectedIndex === 0) {
     player2.play(__dirname + "/" + "chosen.mp3");
     term.grabInput(false);
-    name = readLine.question("Mi a neved, csövi? ");
-    console.log("Üdvözlet ", name, "!");
+
+    name = readLine.question("What is your name? ");
+    console.log("Welcome, ", name, "!");
+
     setTimeout(klari, 30);
     setTimeout(madeBy, 40);
-    //here we start the game , function from index.js and setIntervel
     setTimeout(game, 60, name);
-  }
-  //generating highScore from file, sorting it descending and print
-  else if (response.selectedIndex === 1) {
+  } else if (response.selectedIndex === 1) {
     let highTomb = highS.generateHighScore();
 
     highS.minimumSelectionSort(highTomb);
@@ -78,11 +74,17 @@ term.singleColumnMenu(items, function (error, response) {
       console.log();
     }
 
-    // console.log(highTomb);
     term.grabInput(false);
   } else if (response.selectedIndex === 2) {
     term.grabInput(false);
-    setTimeout(margit, 1500);
+    console.clear();
+    console.log("Copyright (c) 2021 Team Cica");
+    console.log(
+      "Team Cica members: Mate Pinter, Jonka Szabo, Marton Marta, Barnabas Judak, Imre Varga"
+    );
+    console.log("Thanks for playing the game!");
+    console.log("2021, Hungary, Szeged, Flow Academy");
+    //setTimeout(margit, 1500);
   } else if (response.selectedIndex === 3) {
     term.grabInput(false);
     process.exit();
@@ -93,9 +95,7 @@ const madeBy = () => {
   console.log("made by Balázs Klári és Korda Gyuri <3");
 };
 
-//menuMeghivo();
 module.exports = {
   game,
-
   name,
 };
