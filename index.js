@@ -289,10 +289,10 @@ const checkTarget = () => {
       }
     }
 
-    let button2 = readlinesync.keyIn('Congratz you won! Press Q-t exit.');
-    if (button2 === 'q') {
-      process.exit();
-    }
+    // let button2 = readlinesync.keyIn('Congratz you won! Press Q-t exit.');
+    // if (button2 === 'q') {
+    //   process.exit();
+    // }
   }
 };
 

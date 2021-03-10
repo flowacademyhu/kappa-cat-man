@@ -3,7 +3,6 @@ let cfonts = require('cfonts');
 let term = require('terminal-kit').terminal;
 const startGame = require('./index');
 const highS = require('./highscore');
-const fs = require('fs');
 
 let name = '';
 const game = (name) => {
@@ -47,7 +46,7 @@ term.singleColumnMenu(items, function (error, response) {
   term('\n').eraseLineAfter.red('You chose: %s\n', response.selectedText);
   if (response.selectedIndex === 0) {
     term.grabInput(false);
-    name = readLine.question('What is your name?');
+    name = readLine.question('What is your name? ');
     console.log('Welcome, ', name, '!');
 
     setTimeout(klari, 30);
@@ -69,7 +68,7 @@ term.singleColumnMenu(items, function (error, response) {
     console.clear();
     console.log('Copyright (c) 2021 Team Cica');
     console.log(
-      'Team Cica members: Mate Pinter, Jonka Szabo, Marton Marta, Barnabad Judak, Imre Varga'
+      'Team Cica members: Mate Pinter, Jonka Szabo, Marton Marta, Barnabas Judak, Imre Varga'
     );
     console.log('Thanks for playing the game!');
     console.log('2021, Hungary, Szeged, Flow Academy');
