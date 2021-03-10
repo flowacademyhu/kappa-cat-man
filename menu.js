@@ -28,13 +28,6 @@ cfonts.say("CATMAN", {
   env: "node", // define the environment CFonts is being executed in
 });
 
-//this function writes the name in the file and the two , . the score comes from index.js
-/*const fajlbaIras = (name) => {
-  fs.appendFile("highscore", "," + name + ",", function (err) {
-    if (err) throw err;
-  });
-};*/
-
 const klari = () => {
   term.drawImage("./klarikam.jpg", {
     shrink: { width: 180, height: 1500 },

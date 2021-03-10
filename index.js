@@ -24,6 +24,8 @@ const printMap = () => {
         term.red("🐁");
       } else if (map[i][j].icon === "E") {
         term.red("👮");
+      } else if (map[i][j].icon === "D") {
+        term.red("👻");
       } else {
         term.red(map[i][j].icon + " ");
       }
@@ -86,13 +88,7 @@ const addAssincronListener = () => {
       }
     }
   });
-  // printMap();
 };
-
-/*while (button !== "q") {
-  button = readlinesync.keyIn();
-  
-}*/
 
 const changeDirection = (i, j) => {
   const randomDirection = ["LEFT", "UP", "DOWN", "RIGHT"];
@@ -247,7 +243,7 @@ const step2 = () => {
     console.log("vesztettél");
     clearInterval(tombXD[0]);
     console.clear();
-    //maps2.generateMap();
+
     fs.appendFile(
       "highscore.txt",
       "," + this.name + "," + score,
@@ -265,24 +261,10 @@ const step2 = () => {
             console.log();
           }
         }
-
-        /*  else {
-        menu.menuMeghivo();
-      }*/
       }
     );
-    /* let button = readlinesync.keyIn("You are dead. Press Q to exit.");
-    if (button === "q") {
-      process.exit();
-    }*/
-
-    //  return;
   }
 
-  /* if (checkTarget() === false) {
-    console.log("Nyertél");
-    clearInterval(myVar);
-  }*/
   printMap();
   console.log("Your score Cat-man", score);
 };
@@ -320,8 +302,6 @@ const checkTarget = () => {
       }
     }
 
-    //menuwin.menuAfterWin();
-
     let button2 = readlinesync.keyIn("Congratz you won! Press Q-t exit.");
     if (button2 === "q") {
       process.exit();
@@ -337,7 +317,6 @@ const start = (name) => {
   this.name = name;
   printMap();
   addAssincronListener();
-  //let myVar = setInterval(s, 300);
 };
 
 module.exports = {
