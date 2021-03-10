@@ -3,7 +3,7 @@ let cfonts = require("cfonts");
 let term = require("terminal-kit").terminal;
 const startGame = require("./index");
 const highS = require("./highscore");
-
+const makeT = require("./makeTable");
 let name = "";
 const game = (name) => {
   startGame.start(name);
@@ -55,7 +55,7 @@ term.singleColumnMenu(items, function (error, response) {
       lineHeight: 1,
       space: true,
       maxLength: "0",
-      gradient: "magenta,yellow",
+      gradient: "magenta,red",
       independentGradient: true,
       transitionGradient: true,
       env: "node",
@@ -71,12 +71,7 @@ term.singleColumnMenu(items, function (error, response) {
     let highTomb = highS.generateHighScore();
 
     highS.minimumSelectionSort(highTomb);
-    startGame.makeTable(highTomb);
-    /*for (let i = 0; i < highTomb.length; i += 2) {
-      process.stdout.write(highTomb[i] + ":" + highTomb[i + 1]);
-
-      console.log();
-    }*/
+    makeT.makeTable(highTomb);
 
     term.grabInput(false);
   } else if (response.selectedIndex === 2) {
@@ -87,10 +82,10 @@ term.singleColumnMenu(items, function (error, response) {
       colors: ["system"],
       background: "transparent",
       letterSpacing: 1,
-      lineHeight: 1,
+      lineHeight: 10,
       space: true,
       maxLength: "0",
-      gradient: "magenta,yellow",
+      gradient: "magenta,green",
       independentGradient: true,
       transitionGradient: true,
       env: "node",
@@ -98,9 +93,83 @@ term.singleColumnMenu(items, function (error, response) {
     term.grabInput(false);
 
     console.log("Copyright (c) 2021 Team Cica");
+
+    cfonts.say("Jonka Szabo,Imre Varga,Marta Marton,\nBarnabas Judak", {
+      font: "block",
+      align: "center",
+      colors: ["system"],
+      background: "transparent",
+      letterSpacing: 1,
+      lineHeight: 1,
+      space: true,
+      maxLength: "0",
+      gradient: "yellow,magenta",
+      independentGradient: true,
+      transitionGradient: true,
+      env: "node",
+    });
+    /*cfonts.say("Imre Varga", {
+      font: "block",
+      align: "center",
+      colors: ["system"],
+      background: "transparent",
+      letterSpacing: 1,
+      lineHeight: 1,
+      space: true,
+      maxLength: "0",
+      gradient: "red,green",
+      independentGradient: true,
+      transitionGradient: true,
+      env: "node",
+    });
+    cfonts.say("Barnabas Judak", {
+      font: "block",
+      align: "center",
+      colors: ["system"],
+      background: "transparent",
+      letterSpacing: 1,
+      lineHeight: 1,
+      space: true,
+      maxLength: "0",
+      gradient: "yellow,cyan",
+      independentGradient: true,
+      transitionGradient: true,
+      env: "node",
+    });
+    cfonts.say("Marton Marta", {
+      font: "block",
+      align: "center",
+      colors: ["system"],
+      background: "transparent",
+      letterSpacing: 1,
+      lineHeight: 1,
+      space: true,
+      maxLength: "0",
+      gradient: "blue,red",
+      independentGradient: true,
+      transitionGradient: true,
+      env: "node",
+    });*/
+    console.log("Menter alias fő cica");
+    cfonts.say("Mate Pinter", {
+      font: "block",
+      align: "center",
+      colors: ["system"],
+      background: "transparent",
+      letterSpacing: 1,
+      lineHeight: 1,
+      space: true,
+      maxLength: "25",
+      gradient: "red,green",
+      independentGradient: true,
+      transitionGradient: true,
+      env: "node",
+    });
+    console.log("Special thank / Those whom without this wouldn't be possible");
     console.log(
-      "Team Cica members: Mate Pinter, Jonka Szabo, Marton Marta, Barnabas Judak, Imre Varga"
+      "Martin, Andor , Andris , a jófej Martin, a goolizd ki Martin, Az old meg Andor , a mésik Andris , A hetedik Feri, A takarító néni, Győző, Ági a.k.a. Vámpír, Csipkés Zoltán , Csipkézetlen Zoltán , Feri , Leijla hercegnő, Bangó Margit, Balázs Fecó , A NetPincér futár , A szegedi Tudomány Egyetem  "
     );
+    console.log("Copyright (c) 2021 Team Cica");
     console.log("Thanks for playing the game!");
     console.log("2021, Hungary, Szeged, Flow Academy");
     //setTimeout(margit, 1500);
@@ -115,7 +184,7 @@ term.singleColumnMenu(items, function (error, response) {
       lineHeight: 1,
       space: true,
       maxLength: "0",
-      gradient: "magenta,yellow",
+      gradient: "magenta,red",
       independentGradient: true,
       transitionGradient: true,
       env: "node",
