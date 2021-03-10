@@ -7,6 +7,10 @@ const startGame = require("./index.js");
 const highS = require("./highscore.js");
 const menuwin = require("./menuwin.js");
 const fs = require("fs");
+const mpg = require("mpg123");
+
+const player = new mpg.MpgPlayer();
+player.play(__dirname + "/" + "cicazene.mp3");
 
 cfonts.say("CATMAN", {
   font: "block", // define the font face
