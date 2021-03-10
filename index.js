@@ -273,26 +273,20 @@ const checkTarget = () => {
       ',' + this.name + ',' + score,
       function (err) {
         if (err) throw err;
+        let highTomb = highS.generateHighScore();
+
+        highS.minimumSelectionSort(highTomb);
+        for (let i = 0; i < highTomb.length; i += 2) {
+          if (i === highTomb.length - 2) {
+            process.stdout.write(highTomb[i] + ':' + score);
+            console.log();
+          } else {
+            process.stdout.write(highTomb[i] + ':' + highTomb[i + 1]);
+            console.log();
+          }
+        }
       }
     );
-
-    let highTomb = highS.generateHighScore();
-
-    highS.minimumSelectionSort(highTomb);
-    for (let i = 0; i < highTomb.length; i += 2) {
-      if (i === highTomb.length - 2) {
-        process.stdout.write(highTomb[i] + ':' + score);
-        console.log();
-      } else {
-        process.stdout.write(highTomb[i] + ':' + highTomb[i + 1]);
-        console.log();
-      }
-    }
-
-    // let button2 = readlinesync.keyIn('Congratz you won! Press Q-t exit.');
-    // if (button2 === 'q') {
-    //   process.exit();
-    // }
   }
 };
 
