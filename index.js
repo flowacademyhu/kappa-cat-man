@@ -10,6 +10,7 @@ const fs = require("fs");
 
 //Time to use the functions fam
 const map = maps2.generateMap();
+const map2 = map;
 let tombXD = [];
 
 const printMap = () => {
@@ -23,6 +24,8 @@ const printMap = () => {
         term.red("🐁");
       } else if (map[i][j].icon === "E") {
         term.red("👮");
+      } else if (map[i][j].icon === "D") {
+        term.red("👻");
       } else {
         term.red(map[i][j].icon + " ");
       }
@@ -85,13 +88,7 @@ const addAssincronListener = () => {
       }
     }
   });
-  // printMap();
 };
-
-/*while (button !== "q") {
-  button = readlinesync.keyIn();
-  
-}*/
 
 const changeDirection = (i, j) => {
   const randomDirection = ["LEFT", "UP", "DOWN", "RIGHT"];
@@ -247,28 +244,27 @@ const step2 = () => {
     clearInterval(tombXD[0]);
     console.clear();
 
-    let highTomb = highS.generateHighScore();
+    fs.appendFile(
+      "highscore.txt",
+      "," + this.name + "," + score,
+      function (err) {
+        if (err) throw err;
+        let highTomb = highS.generateHighScore();
 
-    highS.minimumSelectionSort(highTomb);
-    for (let i = 0; i < highTomb.length; i += 2) {
-      if (i === highTomb.length - 2) {
-        process.stdout.write(highTomb[i] + ":" + score);
-        console.log();
-      } else {
-        process.stdout.write(highTomb[i] + ":" + highTomb[i + 1]);
-        console.log();
+        highS.minimumSelectionSort(highTomb);
+        for (let i = 0; i < highTomb.length; i += 2) {
+          if (i === highTomb.length - 2) {
+            process.stdout.write(highTomb[i] + ":" + score);
+            console.log();
+          } else {
+            process.stdout.write(highTomb[i] + ":" + highTomb[i + 1]);
+            console.log();
+          }
+        }
       }
-    }
-    fs.appendFile("highscore", score, function (err) {
-      if (err) throw err;
-    });
-    return;
+    );
   }
 
-  /* if (checkTarget() === false) {
-    console.log("Nyertél");
-    clearInterval(myVar);
-  }*/
   printMap();
   console.log("Your score Cat-man", score);
 };
@@ -283,14 +279,15 @@ const checkTarget = () => {
     }
   }
   if (counter === 0) {
-    console.log("nyertél00");
-    // process.stdin.removeAllListeners('data');
-    // process.stdin.removeAllListeners('keypress');
-    // process.stdin.setRawMode(false);
-    // process.stdin.resume();
-    // process.stdin.end();
     clearInterval(tombXD[0]);
     console.clear();
+    fs.appendFile(
+      "highscore.txt",
+      "," + this.name + "," + score,
+      function (err) {
+        if (err) throw err;
+      }
+    );
 
     let highTomb = highS.generateHighScore();
 
@@ -304,11 +301,11 @@ const checkTarget = () => {
         console.log();
       }
     }
-    fs.appendFile("highscore", score, function (err) {
-      if (err) throw err;
-    });
-    //menuwin.menuAfterWin();
-    return;
+
+    let button2 = readlinesync.keyIn("Congratz you won! Press Q-t exit.");
+    if (button2 === "q") {
+      process.exit();
+    }
   }
 };
 
@@ -316,10 +313,10 @@ const checkHighScore = () => {
   generateHighScore;
 };
 
-const start = () => {
+const start = (name) => {
+  this.name = name;
   printMap();
   addAssincronListener();
-  //let myVar = setInterval(s, 300);
 };
 
 module.exports = {

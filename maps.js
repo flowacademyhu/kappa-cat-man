@@ -78,28 +78,9 @@ const generateMap = () => {
       }
     }
   }
-  //console.log(objectMap);
 
-  //console.log(objectMap[5][4].type);
   return objectMap;
 };
-/*
-Maybe I gonna put it in a function later
-const objectMap = [];
-for (let i = 0; i < segedT.length; i++) {
-  for (let j = 0; j < segeT1[i].length; j++) {
-    if (segedT[i][j] === " ") {
-      objectMap[i][j] = {
-        type: null,
-        icon: null,
-        direction: null,
-        color: null,
-      };
-    }
-  }
-}
-*/
-//made the export to start and connect with index.js
 
 module.exports = {
   generateMap,

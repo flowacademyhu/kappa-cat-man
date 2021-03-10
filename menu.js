@@ -3,14 +3,21 @@ let getPixels = require("get-pixels");
 let axel = require("axel");
 let cfonts = require("cfonts");
 let term = require("terminal-kit").terminal;
-const startGame = require("./index.js");
-const highS = require("./highscore.js");
-const menuwin = require("./menuwin.js");
+const startGame = require("./index");
+const highS = require("./highscore");
+const menuwin = require("./menuwin");
 const fs = require("fs");
 const mpg = require("mpg123");
 
 const player = new mpg.MpgPlayer();
 player.play(__dirname + "/" + "cicazene.mp3");
+
+const player2 = new mpg.MpgPlayer();
+
+let name = "";
+const game = (name) => {
+  startGame.start(name);
+};
 
 cfonts.say("CATMAN", {
   font: "block", // define the font face
@@ -26,17 +33,6 @@ cfonts.say("CATMAN", {
   transitionGradient: true, // define if this is a transition between colors directly
   env: "node", // define the environment CFonts is being executed in
 });
-
-let name = "";
-const game = () => {
-  startGame.start();
-};
-//this function writes the name in the file and the two , . the score comes from index.js
-const fajlbaIras = (name) => {
-  fs.appendFile("highscore", "," + name + ",", function (err) {
-    if (err) throw err;
-  });
-};
 
 const klari = () => {
   term.drawImage("./klarikam.jpg", {
@@ -62,15 +58,14 @@ term.singleColumnMenu(items, function (error, response) {
     response.selectedText
   );
   if (response.selectedIndex === 0) {
+    player2.play(__dirname + "/" + "chosen.mp3");
     term.grabInput(false);
-    name = readLine.question("Mi a neved, csövi?");
+    name = readLine.question("Mi a neved, csövi? ");
     console.log("Üdvözlet ", name, "!");
-
     setTimeout(klari, 30);
     setTimeout(madeBy, 40);
     //here we start the game , function from index.js and setIntervel
-    setTimeout(game, 60);
-    fajlbaIras(name);
+    setTimeout(game, 60, name);
   }
   //generating highScore from file, sorting it descending and print
   else if (response.selectedIndex === 1) {
@@ -82,6 +77,7 @@ term.singleColumnMenu(items, function (error, response) {
 
       console.log();
     }
+
     // console.log(highTomb);
     term.grabInput(false);
   } else if (response.selectedIndex === 2) {
@@ -97,7 +93,9 @@ const madeBy = () => {
   console.log("made by Balázs Klári és Korda Gyuri <3");
 };
 
+//menuMeghivo();
 module.exports = {
-  name,
   game,
+
+  name,
 };
