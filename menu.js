@@ -67,7 +67,12 @@ term.singleColumnMenu(items, function (error, response) {
   } else if (response.selectedIndex === 2) {
     term.grabInput(false);
     console.clear();
-    console.log('This program created by the Team Cica');
+    console.log('Copyright (c) 2021 Team Cica');
+    console.log(
+      'Team Cica members: Mate Pinter, Jonka Szabo, Marton Marta, Barnabad Judak, Imre Varga'
+    );
+    console.log('Thanks for playing the game!');
+    console.log('2021, Hungary, Szeged, Flow Academy');
     //setTimeout(margit, 1500);
   } else if (response.selectedIndex === 3) {
     term.grabInput(false);
