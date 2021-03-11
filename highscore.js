@@ -1,10 +1,8 @@
-const fs = require("fs");
-const start = require("./index.js");
-const nev = require("./menu.js");
+const fs = require('fs');
 const generateHighScore = () => {
   let segedTomb = [];
-  const file = fs.readFileSync("./highscore.txt", { encoding: "utf8" });
-  segedTomb = file.split(",");
+  const file = fs.readFileSync('./highscore.txt', { encoding: 'utf8' });
+  segedTomb = file.split(',');
 
   for (let i = 1; i < segedTomb.length; i += 2) {
     segedTomb[i] = parseInt(segedTomb[i]);
