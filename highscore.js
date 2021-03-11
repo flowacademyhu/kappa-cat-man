@@ -1,6 +1,6 @@
 const fs = require("fs");
 const start = require("./index.js");
-const nev = require("./menu.js");
+
 //NOTE: HAPPY TO RENAME ANYTHING , MAPS AND MAPS.JS A BIT CONFUSING
 //Made the code a function , now we can call it in maps.js
 const generateHighScore = () => {
