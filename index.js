@@ -1,12 +1,15 @@
 const maps2 = require("./maps.js");
 const highS = require("./highscore.js");
+const sounds = require("./sounds");
+const makeT = require("./makeTable.js");
 const readlinesync = require("readline-sync");
 const term = require("terminal-kit").terminal;
 const fs = require("fs");
 const mpg = require("mpg123");
-const sounds = require("./sounds");
+const { table, TableCol } = require("table");
 
 const map = maps2.generateMap();
+let cfonts = require("cfonts");
 let tombXD = [];
 
 const printMap = () => {
@@ -35,7 +38,7 @@ console.log();
 const stdin = process.stdin;
 
 const addAssincronListener = () => {
-  let myVar = setInterval(step2, 500);
+  let myVar = setInterval(step2, 300);
   tombXD[0] = myVar;
 
   stdin.setRawMode(true);
@@ -247,20 +250,14 @@ const step2 = () => {
         let highTomb = highS.generateHighScore();
 
         highS.minimumSelectionSort(highTomb);
-        for (let i = 0; i < highTomb.length; i += 2) {
-          if (i === highTomb.length - 2) {
-            process.stdout.write(highTomb[i] + ":" + score);
-            console.log();
-          } else {
-            process.stdout.write(highTomb[i] + ":" + highTomb[i + 1]);
-            console.log();
-          }
-        }
+        makeT.makeTable(highTomb, 1);
+        console.log("Press 'q' to Goodbye");
       }
     );
   }
 
   printMap();
+
   console.log("Your score my Cat-Man: ", score);
 };
 
@@ -281,34 +278,18 @@ const checkTarget = () => {
       "," + this.name + "," + score,
       function (err) {
         if (err) throw err;
+        let highTomb = highS.generateHighScore();
+
+        highS.minimumSelectionSort(highTomb);
+        makeT.makeTable(highTomb);
       }
     );
-
-    let highTomb = highS.generateHighScore();
-
-    highS.minimumSelectionSort(highTomb);
-    for (let i = 0; i < highTomb.length; i += 2) {
-      if (i === highTomb.length - 2) {
-        process.stdout.write(highTomb[i] + ":" + score);
-        console.log();
-      } else {
-        process.stdout.write(highTomb[i] + ":" + highTomb[i + 1]);
-        console.log();
-      }
-    }
-
-    let button2 = readlinesync.keyIn(
-      "😺 👑 Congratz you won! Press 'Q' to exit. 👑 😺"
-    );
-    if (button2 === "q") {
-      process.exit();
-    }
   }
 };
 
 const start = (name) => {
   this.name = name;
-  printMap();
+
   addAssincronListener();
 };
 

@@ -1,2 +1,1 @@
-Vazul,100,Győző,15,Renátó,20,Ármándó,8,Rámon,13,Elvispresli,50,Tschavolo,4,Julió,10,Hávier,19,Fernanda,15,Szolomón,1,wwqq,0,asd,0
-,,0,,0,,1,,0,,0,gizike,0,fewsrdhtfjzghftgdrfesa,0,erdtfgzhj,0,anyukam,0,,2,sedrtfgzhjk,3,anyu,3
+Vazul,100,Gáspár_Győző,15,Lakatos_Renátó,20,Hószés_Ármándó,8,Rostás_Rámon,13,Kanalas_Elvispresli,50,Sztojka_Tschavolo,4,Enrike_Julió,10,Órsós_Hávier,19,Kolompár_Fernanda,15,Börtönviselt_Szolomón,1,Shávoló_Muroprá,1,anyukam,1,anyukad,2

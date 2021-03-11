@@ -1,4 +1,5 @@
 const mpg = require("mpg123");
+const readline = require("readline-sync");
 
 const backgroundMusic = () => {
   const player = new mpg.MpgPlayer();
