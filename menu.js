@@ -207,6 +207,7 @@ term.singleColumnMenu(items, function (error, response) {
       "Copyright (c) 2021 Team Cica                                Thanks for playing the game                                     2021, Hungary, Szeged, Flow Academy"
     );
 
+    setTimeout(sounds.backgroundmusicStop, 10000);
     setTimeout(margit, 10000);
     setTimeout(sounds.nadfedelesKulipintyo, 10000);
     if (startGame.key === "q") {
