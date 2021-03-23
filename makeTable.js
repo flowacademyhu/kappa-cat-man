@@ -69,24 +69,22 @@ const printHighScores = (highScores, x) => {
   for (let i = 0; i < highScores.length; i += 1) {
     const { name, score } = highScores[i]
 
-    let nameText
+    let icon = '😿'
     let scoreText = score + " mancs points"
 
     if (i === 0) {
-      nameText = "👑 " + name;
+      icon = '👑'
       scoreText = " 🔥 " + score + " 🔥 ";
     } else if (i === 1) {
-      nameText = "🥈 " + name;
+      icon = '🥈'
     } else if (i === 2) {
-      nameText = "😒 " + name;
+      icon = '😒'
     } else if (i === highScores.length - 1) {
-      nameText = "🙈 " + name;
+      icon = '🙈'
       scoreText = " 👎 " + score + " 👎 ";
-    } else {
-      nameText = "😿 " + name;
     }
 
-    graficTable[j][0] = nameText
+    graficTable[j][0] = icon + ' ' + name
     graficTable[j][1] = scoreText
 
     j++;
