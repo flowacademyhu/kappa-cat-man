@@ -5,10 +5,7 @@ const makeT = require('./makeTable.js');
 const term = require('terminal-kit').terminal;
 const fs = require('fs');
 
-const { table, TableCol } = require('table');
-
 const map = maps2.generateMap();
-let cfonts = require('cfonts');
 let tombXD = [];
 
 const printMap = () => {
