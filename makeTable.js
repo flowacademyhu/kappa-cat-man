@@ -64,7 +64,7 @@ const printHighScores = (highScores, x) => {
   });
 
 
-  let graficTable = generate2d(highScores.length / 2, 2);
+  let graficTable = generate2d(highScores.length, 2);
   let j = 0;
   for (let i = 0; i < highScores.length; i += 1) {
     const { name, score } = highScores[i]
