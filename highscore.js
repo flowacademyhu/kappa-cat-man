@@ -6,12 +6,12 @@ const compareScores = (a, b) => {
   return a.score - b.score
 }
 
-const generateHighScore = () => {
-  // read file
+const readHighScoreFile = () => {
   const file = fs.readFileSync(HIGHSCORE_FILE, { encoding: 'utf8' });
-  const savedHighScores = file.split(',');
+  return file.split(',');
+}
 
-  // parse input high scores
+const parseInputHighScore = (savedHighScores) => {
   const highScores = []
 
   for (let i = 1; i < savedHighScores.length; i += 2) {
@@ -23,18 +23,32 @@ const generateHighScore = () => {
     highScores.push(currentScore);
   }
 
-  // sort high score
-  const sortedHighScores = highScores.sort(compareScores).reverse()
+  return highScores
+}
 
-  // transform high score array
+const sortHighScores = (highScore) => {
+  return highScore.sort(compareScores).reverse()
+}
+
+const transformHighScores = (highScores) => {
   const result = []
 
-  for(let i = 0; i < sortedHighScores.length; i++) {
-    result.push(sortedHighScores[i].name)
-    result.push(sortedHighScores[i].score)
+  for(let i = 0; i < highScores.length; i++) {
+    result.push(highScores[i].name)
+    result.push(highScores[i].score)
   }
 
-  return result;
+  return result
+}
+
+const generateHighScore = () => {
+  const savedHighScores = readHighScoreFile()
+
+  const highScores = parseInputHighScore(savedHighScores)
+
+  const sortedHighScores = sortHighScores(highScores)
+
+  return transformHighScores(sortedHighScores);
 };
 
 const addHighScore = (name, score, cb) => {
