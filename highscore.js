@@ -30,17 +30,6 @@ const sortHighScores = (highScore) => {
   return highScore.sort(compareScores).reverse()
 }
 
-const transformHighScores = (highScores) => {
-  const result = []
-
-  for(let i = 0; i < highScores.length; i++) {
-    result.push(highScores[i].name)
-    result.push(highScores[i].score)
-  }
-
-  return result
-}
-
 const generateHighScore = () => {
   const savedHighScores = readHighScoreFile()
 
@@ -48,7 +37,7 @@ const generateHighScore = () => {
 
   const sortedHighScores = sortHighScores(highScores)
 
-  return transformHighScores(sortedHighScores);
+  return sortedHighScores;
 };
 
 const addHighScore = (name, score, cb) => {
