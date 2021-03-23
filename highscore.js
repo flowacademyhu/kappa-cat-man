@@ -7,9 +7,11 @@ const compareScores = (a, b) => {
 }
 
 const generateHighScore = () => {
+  // read file
   const file = fs.readFileSync(HIGHSCORE_FILE, { encoding: 'utf8' });
   const savedHighScores = file.split(',');
 
+  // parse input high scores
   const highScores = []
 
   for (let i = 1; i < savedHighScores.length; i += 2) {
@@ -21,8 +23,10 @@ const generateHighScore = () => {
     highScores.push(currentScore);
   }
 
+  // sort high score
   const sortedHighScores = highScores.sort(compareScores).reverse()
 
+  // transform high score array
   const result = []
 
   for(let i = 0; i < sortedHighScores.length; i++) {
