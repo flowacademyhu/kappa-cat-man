@@ -75,13 +75,13 @@ const printHighScores = (highScores, x) => {
     if (i === 0) {
       nameText = "👑 " + name;
       scoreText = " 🔥 " + score + " 🔥 ";
-    } else if (i === 2) {
+    } else if (i === 1) {
       nameText = "🥈 " + name;
       scoreText = score + " mancs points";
-    } else if (i === 4) {
+    } else if (i === 2) {
       nameText = "😒 " + name;
       scoreText = score + " mancs points";
-    } else if (i === highScores.length - 2) {
+    } else if (i === highScores.length - 1) {
       nameText = "🙈 " + name;
       scoreText = " 👎 " + score + " 👎 ";
     } else {
