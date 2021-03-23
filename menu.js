@@ -105,8 +105,7 @@ term.singleColumnMenu(items, function (error, response) {
     });
     sounds.chosenElementSound();
     let highTomb = highS.generateHighScore();
-
-    highS.minimumSelectionSort(highTomb);
+    
     makeT.makeTable(highTomb);
   } else if (response.selectedIndex === 2) {
     sounds.chosenElementSound();

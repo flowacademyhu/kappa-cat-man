@@ -10,7 +10,7 @@ const generateHighScore = () => {
   for (let i = 1; i < segedTomb.length; i += 2) {
     segedTomb[i] = parseInt(segedTomb[i]);
   }
-  return segedTomb;
+  return minimumSelectionSort(segedTomb);
 };
 
 const addHighScore = (name, score, cb) => {
@@ -43,5 +43,4 @@ const minimumSelectionSort = (src) => {
 module.exports = {
   addHighScore,
   generateHighScore,
-  minimumSelectionSort,
 };

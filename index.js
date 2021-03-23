@@ -242,7 +242,6 @@ const step2 = () => {
       if (err) throw err;
       let highTomb = highS.generateHighScore();
 
-      highS.minimumSelectionSort(highTomb);
       makeT.makeTable(highTomb, 1);
       console.log("Press 'q' to Goodbye");
     });
@@ -269,7 +268,6 @@ const checkTarget = () => {
       if (err) throw err;
       let highTomb = highS.generateHighScore();
 
-      highS.minimumSelectionSort(highTomb);
       makeT.makeTable(highTomb);
     });
   }
