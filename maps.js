@@ -82,6 +82,4 @@ const generateMap = () => {
   return objectMap;
 };
 
-module.exports = {
-  generateMap,
-};
+module.exports = generateMap

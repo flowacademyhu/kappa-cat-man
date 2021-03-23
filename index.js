@@ -1,11 +1,11 @@
-const maps2 = require('./maps.js');
+const generateMap = require('./maps.js');
 const highS = require('./highscore.js');
 const sounds = require('./sounds');
 const makeT = require('./makeTable.js');
 const term = require('terminal-kit').terminal;
 const fs = require('fs');
 
-const map = maps2.generateMap();
+const map = generateMap();
 let tombXD = [];
 
 const printMap = () => {
