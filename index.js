@@ -238,13 +238,12 @@ const step2 = () => {
     clearInterval(tombXD[0]);
     console.clear();
 
-    highS.addHighScore(this.name, score, function (err) {
-      if (err) throw err;
-      let highTomb = highS.generateHighScore();
+    highS.addHighScore(this.name, score)
 
-      makeT.printHighScores(highTomb, 1);
-      console.log("Press 'q' to Goodbye");
-    });
+    let highTomb = highS.generateHighScore();
+
+    makeT.printHighScores(highTomb, 1);
+    console.log("Press 'q' to Goodbye");
   }
 
   printMap();
@@ -264,12 +263,11 @@ const checkTarget = () => {
   if (counter === 0) {
     clearInterval(tombXD[0]);
     console.clear();
-    highS.addHighScore(this.name, score, function (err) {
-      if (err) throw err;
-      let highTomb = highS.generateHighScore();
+    highS.addHighScore(this.name, score)
+    
+    let highTomb = highS.generateHighScore();
 
-      makeT.printHighScores(highTomb);
-    });
+    makeT.printHighScores(highTomb);
   }
 };
 

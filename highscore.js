@@ -1,6 +1,7 @@
 const fs = require('fs');
 
 const HIGHSCORE_FILE = './highscore.txt'
+const HIGHSCORE_FILE_JSON = './highscore.json'
 
 const compareScores = (a, b) => {
   return a.score - b.score
@@ -9,6 +10,11 @@ const compareScores = (a, b) => {
 const readHighScoreFile = () => {
   const file = fs.readFileSync(HIGHSCORE_FILE, { encoding: 'utf8' });
   return file.split(',');
+}
+
+const readHighScoreFileJson = () => {
+  const file = fs.readFileSync(HIGHSCORE_FILE_JSON, { encoding: 'utf8' });
+  return JSON.parse(file)
 }
 
 const parseInputHighScore = (savedHighScores) => {
@@ -31,24 +37,21 @@ const sortHighScores = (highScore) => {
 }
 
 const generateHighScore = () => {
-  const savedHighScores = readHighScoreFile()
-
-  const highScores = parseInputHighScore(savedHighScores)
-
-  const sortedHighScores = sortHighScores(highScores)
-
-  return sortedHighScores;
+  return readHighScoreFileJson();
 };
 
-const addHighScore = (name, score, cb) => {
-  fs.appendFile(
-    HIGHSCORE_FILE,
-    ',' + name + ',' + score,
-    cb
-  );
-}
+const addHighScore = (name, score) => {
+  const savedHighScores = readHighScoreFileJson()
 
-generateHighScore()
+  savedHighScores.push({
+    name: name,
+    score: score,
+  })
+
+  const sortedHighScores = sortHighScores(savedHighScores)
+
+  fs.writeFileSync(HIGHSCORE_FILE_JSON, JSON.stringify(sortedHighScores))
+}
 
 module.exports = {
   addHighScore,
