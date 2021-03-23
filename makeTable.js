@@ -70,23 +70,20 @@ const printHighScores = (highScores, x) => {
     const { name, score } = highScores[i]
 
     let nameText
-    let scoreText
+    let scoreText = score + " mancs points"
 
     if (i === 0) {
       nameText = "👑 " + name;
       scoreText = " 🔥 " + score + " 🔥 ";
     } else if (i === 1) {
       nameText = "🥈 " + name;
-      scoreText = score + " mancs points";
     } else if (i === 2) {
       nameText = "😒 " + name;
-      scoreText = score + " mancs points";
     } else if (i === highScores.length - 1) {
       nameText = "🙈 " + name;
       scoreText = " 👎 " + score + " 👎 ";
     } else {
       nameText = "😿 " + name;
-      scoreText = score + " mancs points";
     }
 
     graficTable[j][0] = nameText
