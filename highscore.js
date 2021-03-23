@@ -1,7 +1,10 @@
 const fs = require('fs');
+
+const HIGHSCORE_FILE = './highscore.txt'
+
 const generateHighScore = () => {
   let segedTomb = [];
-  const file = fs.readFileSync('./highscore.txt', { encoding: 'utf8' });
+  const file = fs.readFileSync(HIGHSCORE_FILE, { encoding: 'utf8' });
   segedTomb = file.split(',');
 
   for (let i = 1; i < segedTomb.length; i += 2) {
@@ -9,6 +12,14 @@ const generateHighScore = () => {
   }
   return segedTomb;
 };
+
+const addHighScore = (name, score, cb) => {
+  fs.appendFile(
+    HIGHSCORE_FILE,
+    ',' + name + ',' + score,
+    cb
+  );
+}
 
 const minimumSelectionSort = (src) => {
   for (let i = 1; i < src.length - 2; i += 2) {
@@ -30,6 +41,7 @@ const minimumSelectionSort = (src) => {
   return src;
 };
 module.exports = {
+  addHighScore,
   generateHighScore,
   minimumSelectionSort,
 };

@@ -238,18 +238,14 @@ const step2 = () => {
     clearInterval(tombXD[0]);
     console.clear();
 
-    fs.appendFile(
-      'highscore.txt',
-      ',' + this.name + ',' + score,
-      function (err) {
-        if (err) throw err;
-        let highTomb = highS.generateHighScore();
+    highS.addHighScore(this.name, score, function (err) {
+      if (err) throw err;
+      let highTomb = highS.generateHighScore();
 
-        highS.minimumSelectionSort(highTomb);
-        makeT.makeTable(highTomb, 1);
-        console.log("Press 'q' to Goodbye");
-      }
-    );
+      highS.minimumSelectionSort(highTomb);
+      makeT.makeTable(highTomb, 1);
+      console.log("Press 'q' to Goodbye");
+    });
   }
 
   printMap();
@@ -269,17 +265,13 @@ const checkTarget = () => {
   if (counter === 0) {
     clearInterval(tombXD[0]);
     console.clear();
-    fs.appendFile(
-      'highscore.txt',
-      ',' + this.name + ',' + score,
-      function (err) {
-        if (err) throw err;
-        let highTomb = highS.generateHighScore();
+    highS.addHighScore(this.name, score, function (err) {
+      if (err) throw err;
+      let highTomb = highS.generateHighScore();
 
-        highS.minimumSelectionSort(highTomb);
-        makeT.makeTable(highTomb);
-      }
-    );
+      highS.minimumSelectionSort(highTomb);
+      makeT.makeTable(highTomb);
+    });
   }
 };
 
