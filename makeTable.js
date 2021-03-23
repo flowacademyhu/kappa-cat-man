@@ -62,28 +62,35 @@ const printHighScores = (highScores, x) => {
     transitionGradient: true,
     env: "node",
   });
+
+
   let graficTable = generate2d(highScores.length / 2, 2);
   let j = 0;
   for (let i = 0; i < highScores.length; i += 2) {
+    const name = highScores[i]
+    const score = highScores[i + 1]
+
     if (i === 0) {
-      graficTable[j][0] = "👑 " + highScores[i];
-      graficTable[j][1] = " 🔥 " + highScores[i + 1] + " 🔥 ";
+      graficTable[j][0] = "👑 " + name;
+      graficTable[j][1] = " 🔥 " + score + " 🔥 ";
     } else if (i === 2) {
-      graficTable[j][0] = "🥈 " + highScores[i];
-      graficTable[j][1] = highScores[i + 1] + " mancs points";
+      graficTable[j][0] = "🥈 " + name;
+      graficTable[j][1] = score + " mancs points";
     } else if (i === 4) {
-      graficTable[j][0] = "😒 " + highScores[i];
-      graficTable[j][1] = highScores[i + 1] + " mancs points";
+      graficTable[j][0] = "😒 " + name;
+      graficTable[j][1] = score + " mancs points";
     } else if (i === highScores.length - 2) {
-      graficTable[j][0] = "🙈 " + highScores[i];
-      graficTable[j][1] = " 👎 " + highScores[i + 1] + " 👎 ";
+      graficTable[j][0] = "🙈 " + name;
+      graficTable[j][1] = " 👎 " + score + " 👎 ";
     } else {
-      graficTable[j][0] = "😿 " + highScores[i];
-      graficTable[j][1] = highScores[i + 1] + " mancs points";
+      graficTable[j][0] = "😿 " + name;
+      graficTable[j][1] = score + " mancs points";
     }
 
     j++;
   }
+
+
   output = table(graficTable, config);
 
   console.log(output);
