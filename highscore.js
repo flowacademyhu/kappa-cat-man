@@ -7,18 +7,15 @@ const compareScores = (a, b) => {
 }
 
 const generateHighScore = () => {
-  let segedTomb = [];
   const file = fs.readFileSync(HIGHSCORE_FILE, { encoding: 'utf8' });
-  segedTomb = file.split(',');
+  const savedHighScores = file.split(',');
 
   const highScores = []
 
-  for (let i = 1; i < segedTomb.length; i += 2) {
-    segedTomb[i] = parseInt(segedTomb[i]);
-
+  for (let i = 1; i < savedHighScores.length; i += 2) {
     const currentScore = {
-      name: segedTomb[i-1],
-      score: parseInt(segedTomb[i]), 
+      name: savedHighScores[i-1],
+      score: parseInt(savedHighScores[i]), 
     }
 
     highScores.push(currentScore);
