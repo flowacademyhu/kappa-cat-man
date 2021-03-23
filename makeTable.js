@@ -29,7 +29,7 @@ const generate2d = (n, m) => {
 };
 
 //make and print table
-const printHighScores = (highS, x) => {
+const printHighScores = (highScores, x) => {
   console.clear();
 
   if (x === 2) {
@@ -62,24 +62,24 @@ const printHighScores = (highS, x) => {
     transitionGradient: true,
     env: "node",
   });
-  let graficTable = generate2d(highS.length / 2, 2);
+  let graficTable = generate2d(highScores.length / 2, 2);
   let j = 0;
-  for (let i = 0; i < highS.length; i += 2) {
+  for (let i = 0; i < highScores.length; i += 2) {
     if (i === 0) {
-      graficTable[j][0] = "👑 " + highS[i];
-      graficTable[j][1] = " 🔥 " + highS[i + 1] + " 🔥 ";
+      graficTable[j][0] = "👑 " + highScores[i];
+      graficTable[j][1] = " 🔥 " + highScores[i + 1] + " 🔥 ";
     } else if (i === 2) {
-      graficTable[j][0] = "🥈 " + highS[i];
-      graficTable[j][1] = highS[i + 1] + " mancs points";
+      graficTable[j][0] = "🥈 " + highScores[i];
+      graficTable[j][1] = highScores[i + 1] + " mancs points";
     } else if (i === 4) {
-      graficTable[j][0] = "😒 " + highS[i];
-      graficTable[j][1] = highS[i + 1] + " mancs points";
-    } else if (i === highS.length - 2) {
-      graficTable[j][0] = "🙈 " + highS[i];
-      graficTable[j][1] = " 👎 " + highS[i + 1] + " 👎 ";
+      graficTable[j][0] = "😒 " + highScores[i];
+      graficTable[j][1] = highScores[i + 1] + " mancs points";
+    } else if (i === highScores.length - 2) {
+      graficTable[j][0] = "🙈 " + highScores[i];
+      graficTable[j][1] = " 👎 " + highScores[i + 1] + " 👎 ";
     } else {
-      graficTable[j][0] = "😿 " + highS[i];
-      graficTable[j][1] = highS[i + 1] + " mancs points";
+      graficTable[j][0] = "😿 " + highScores[i];
+      graficTable[j][1] = highScores[i + 1] + " mancs points";
     }
 
     j++;
