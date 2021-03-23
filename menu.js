@@ -106,7 +106,7 @@ term.singleColumnMenu(items, function (error, response) {
     sounds.chosenElementSound();
     let highTomb = highS.generateHighScore();
     
-    makeT.makeTable(highTomb);
+    makeT.printHighScores(highTomb);
   } else if (response.selectedIndex === 2) {
     sounds.chosenElementSound();
     term.grabInput(false);

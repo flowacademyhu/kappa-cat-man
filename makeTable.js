@@ -29,7 +29,7 @@ const generate2d = (n, m) => {
 };
 
 //make and print table
-const makeTable = (highS, x) => {
+const printHighScores = (highS, x) => {
   console.clear();
 
   if (x === 2) {
@@ -90,5 +90,5 @@ const makeTable = (highS, x) => {
 };
 
 module.exports = {
-  makeTable,
+  printHighScores,
 };
